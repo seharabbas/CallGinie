@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import {width,height} from "react-native-dimension";
 
 export const styles = StyleSheet.create({
 
@@ -29,6 +30,47 @@ export const styles = StyleSheet.create({
        color:"white",
        textAlign:"center",
        marginTop:10
+    },
+    registerButtonsContainer:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+     },
+    registeredButton:{
+        width: width(40),
+        height: height(20),
+        borderRadius:5,
+        backgroundColor:"#FFFFFF",
+        justifyContent:"center",
+        alignItems:"center",
+        flexDirection:"column",
+        marginRight:15
+    },
+    registerImage:{
+        width: height(10),
+        height:height(10),
+        borderRadius:height(10)/2,
+        marginBottom:5
+    },
+    registerText:{
+        color: '#969FAA',
+        fontSize:18,
+        fontWeight:"500",
+        textAlign:"center"
+    },
+    loginTextStyle:{
+        color: '#FFFFFF',
+        fontSize: 18,
+        fontWeight: '400',
+        textAlign: 'center'
+    },
+    loginButton:{
+        marginTop:30,
+        flexDirection:"row",
+        justifyContent:"center",
+        height:50,
+        backgroundColor:"#47525E",
+        borderRadius:5,
+        alignItems:"center",
     }
 
 });

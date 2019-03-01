@@ -1,6 +1,9 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation';
-import Login from '../screens/Login';
+import Login from '../screens/Login/Login';
+import Registration from "../screens/registration/Registration";
+
+
 export const SplashNavigator = createStackNavigator(
     {
         Login: {
@@ -11,6 +14,14 @@ export const SplashNavigator = createStackNavigator(
                 animationEnabled: false 
             }
         },
+        Registration:{
+            screen: Registration,
+            navigationOptions:{
+                gesturesEnabled: false,
+                swipeEnabled: false,
+                animationEnabled: false 
+            }
+        }
     },
     {
         initialRouteName: 'Login',
