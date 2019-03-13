@@ -97,7 +97,8 @@ class Registration extends Component {
             return this.signUpCustomer();
         }
         else {
-            return this.signUpMechanic();
+            this.props.navigation.navigate("PinLocation");
+           // return this.signUpMechanic();
         }
 
 
