@@ -70,14 +70,14 @@ export default class PinLocation extends Component {
       <MapView
         provider={ PROVIDER_GOOGLE }
         style={ styles.container }
-        //customMapStyle={ RetroMapStyles }
-        showsUserLocation={ true }
-        initialRegion={{
-          latitude:-6.270565,
-          longitude:106.759550,
-          latitudeDelta: 1,
-          longitudeDelta: 1
-         }}
+        showsMyLocationButton={true}
+        showsUserLocation={true}
+        // initialRegion={{
+        //   latitude:-6.270565,
+        //   longitude:106.759550,
+        //   latitudeDelta: 1,
+        //   longitudeDelta: 1
+        //  }}
         region={ this.state.region }
        
       >

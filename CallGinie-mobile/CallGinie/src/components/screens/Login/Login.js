@@ -4,6 +4,7 @@ import {
     View,
     Image,
     TextInput,
+    ActivityIndicator,
     Text
 } from 'react-native';
 import { styles } from "./Styles";
@@ -11,20 +12,48 @@ const app_logo = require('../../../assets/Ginie_logo.png');
 const customerImage = require('../../../assets/Customer.png');
 const mechanicImage = require('../../../assets/Mechanic.png');
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from "redux";
+import * as ReduxActions from "../../../actions";
 
-export default class Login extends Component {
-    
-    constructor(props){
+class Login extends Component {
+
+    constructor(props) {
         super(props);
-        this.redirectToRegister=this.redirectToRegister.bind(this);
-      
-        
+        this.redirectToRegister = this.redirectToRegister.bind(this);
+        this.state = {
+            userName: "Atif",
+            password: "Atif",
+            isLoading: false
+        }
+        this.login = this.login.bind(this);
+
     }
-    redirectToRegister(userType){
-        this.props.navigation.navigate( "Registration",{
-           userType:userType
+    componentWillReceiveProps(nextProps) {
+        if (this.props.isLoggedIn != nextProps.isLoggedIn) {
+            if(nextProps.isLoggedIn=="true"){
+                this.props.navigation.navigate("DrawerNavigator");
+            }
+            else{
+                this.setState({
+                    isLoading: false
+                })
+            }
+           
+        }
+    }
+    redirectToRegister(userType) {
+        this.props.navigation.navigate("Registration", {
+            userType: userType
         });
     }
+    login() {
+        this.setState({
+            isLoading: true
+        })
+        this.props.login(this.state.userName, this.state.password);
+    };
+
 
     render() {
         return (
@@ -40,6 +69,7 @@ export default class Login extends Component {
                         autoCapitalize={"none"}
                         placeholderTextColor={"#ffffff"}
                         label="Email"
+                        value={this.state.userName}
                         placeholder="Email"
                     />
                     <TextInput
@@ -48,6 +78,7 @@ export default class Login extends Component {
                         autoCapitalize={"none"}
                         placeholderTextColor={"#ffffff"}
                         label="Email"
+                        value={this.state.password}
                         placeholder="Password"
                         secureTextEntry
                         autoCapitalize={"none"}
@@ -55,29 +86,42 @@ export default class Login extends Component {
                     />
                     <TouchableOpacity
                         style={styles.loginButton}
-                        
+                        onPress={this.login}
+                        disabled={this.state.isLoading}
                     >
-                        <Text style={styles.loginTextStyle} >
+                        {this.state.isLoading ? (<ActivityIndicator size={"small"} color={"white"} />) : (<Text style={styles.loginTextStyle} >
                             Login
-                        </Text>
+                        </Text>)}
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.registerButtonsContainer}>
-                    <TouchableOpacity onPress={()=>{this.redirectToRegister("customer")}}>
+                    <TouchableOpacity onPress={() => { this.redirectToRegister("customer") }}>
                         <View style={styles.registeredButton}>
                             <Image source={customerImage} style={styles.registerImage} />
                             <Text style={styles.registerText}>Register</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={()=>{this.redirectToRegister("mechanic")}}>
+                    <TouchableOpacity onPress={() => { this.redirectToRegister("mechanic") }}>
                         <View style={styles.registeredButton}>
                             <Image resizeMode={"contain"} source={mechanicImage} style={styles.registerImage} />
                             <Text style={styles.registerText}>Register</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
-             </View>
+            </View>
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        isLoggedIn: state.AuthReducer.isLoggedIn,
+        userType: state.AuthReducer.userType
+    }
+};
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(ReduxActions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

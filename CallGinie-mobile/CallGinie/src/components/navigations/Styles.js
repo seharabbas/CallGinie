@@ -1,20 +1,41 @@
 import {Platform, StyleSheet } from "react-native";
-import {commonStyles} from "../../screens/commonStyles"
+import {width,height} from "react-native-dimension";
+
+//import {commonStyles} from "../../screens/commonStyles"
 const styles = StyleSheet.create({
      container: {
         paddingTop:20,
         flex: 1,
+        flexDirection:"column",
         backgroundColor: "#026EA7",
+        justifyContent:"flex-start",
+        alignItems:"flex-start",
+        paddingLeft:20
       },
       placeholderImage:{
-        height:80,
-        width:80,
-        borderRadius:40
+        height:120,
+        width:120,
+        borderRadius:60,
+        marginTop:height(20),
+        marginBottom:20,
+        alignSelf:"center"
+    },
+    ratings:{
+        marginBottom:10,
+        alignSelf:"center"
+    },
+    customerName:{
+        color: '#FFFFFF',
+        fontSize: 18,
+        fontWeight: '400',
+        textAlign: 'center',
+        marginBottom:20,
+        alignSelf:"center"
     },
     
     navigationItemText:{
         color: '#FFFFFF',
-        fontFamily: commonStyles.fontFamily,
+      //  fontFamily: commonStyles.fontFamily,
         fontSize: 16,
         fontWeight: '300',
         
@@ -49,7 +70,20 @@ const styles = StyleSheet.create({
         height: 40,
         width: 40,
         justifyContent: "center"
+    },
+    drawerItemContainer:{
+        height:40,
+        flexDirection:"row",
+        alignItems:"center",
+        justifyContent:"flex-start"
+    },
+    drawerItemText:{
+        color: '#FFFFFF',
+        fontSize: 18.67,
+        fontWeight: '500',
+        textAlign: 'left'
     }
+
 
 });
 export default styles;

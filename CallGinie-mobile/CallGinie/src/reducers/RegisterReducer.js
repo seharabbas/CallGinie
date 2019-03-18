@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
     isRegisterSuccessfully:false,
-   error:""
+    error:""
+
 };
 import   * as types from "../actions/types"
 

@@ -8,6 +8,7 @@ import {
     BackHandler,
     TouchableOpacity
 } from 'react-native';
+import { DrawerActions } from 'react-navigation';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { width } from '../../../node_modules/react-native-dimension';
@@ -17,13 +18,23 @@ class PageTemplate extends Component {
     constructor(props) {
         super(props);
         this.onLeftButtonPress=this.onLeftButtonPress.bind(this);
+        this.openDrawerComponent=this.openDrawerComponent.bind(this);
     }
     onLeftButtonPress(){
         if(this.props.onLeftButtonPress){
             this.props.onLeftButtonPress(); 
         }else{
-            
+            this.openDrawerComponent();
         }
+    }
+    openDrawerComponent(){
+        if(this.props.navigation.openDrawer){
+            this.props.navigation.openDrawer();
+        }
+        else{
+            this.props.navigation.dispatch(DrawerActions.toggleDrawer());
+        }
+      // 
     }
     render() {
         const {

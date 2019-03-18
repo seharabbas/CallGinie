@@ -63,3 +63,30 @@ export function registerCustomer(customer){
             });
     }
 }
+export function login(userName,passWord){
+    return function (dispatch, getState) {
+        let isDevMode = false;
+        let axiosParams = {
+            method: "POST",
+            url: "/CLogin/login",
+            data: {
+                Username:userName,
+                Password:passWord
+            }
+        };
+        NetworkActions.makeHTTPRequest(axiosParams, isDevMode)
+            .then(function (response) {
+                let data = response.data;
+                let userRole = data.role;
+                dispatch({ type: types.LOGIN_SUCCESS,payload:{
+                    userRole:userRole
+                } });
+              //  DropDownHolder.getDropDown().alertWithType('success', 'success', "R");
+            }) .catch(function (error) {
+                dispatch({ type: types.LOGIN_FAIL });
+                DropDownHolder.getDropDown().alertWithType('error', 'error', "Something try again please try again");
+
+            });
+    }
+    
+}
