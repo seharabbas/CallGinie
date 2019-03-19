@@ -11,7 +11,8 @@ export default function AuthReducer(state = INITIAL_STATE, action) {
             return{
                 ...state,
                 isLoggedIn:"true",
-                userType:action.payload.userRole
+                userType:action.payload.userRole,
+                customer:action.payload.customer
             }
         case types.LOGIN_FAIL:
             return{

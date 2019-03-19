@@ -72,19 +72,19 @@ export default class PinLocation extends Component {
         style={ styles.container }
         showsMyLocationButton={true}
         showsUserLocation={true}
-        // initialRegion={{
-        //   latitude:-6.270565,
-        //   longitude:106.759550,
-        //   latitudeDelta: 1,
-        //   longitudeDelta: 1
-        //  }}
+        initialRegion={{
+          latitude:-6.270565,
+          longitude:106.759550,
+          latitudeDelta: 1,
+          longitudeDelta: 1
+         }}
         region={ this.state.region }
        
-      >
-        <MapView.Marker
+      />
+        {/* <MapView.Marker
           coordinate={ this.state.region }
         />
-      </MapView>
+      </MapView> */}
       </PageTemplate>
     );
   }

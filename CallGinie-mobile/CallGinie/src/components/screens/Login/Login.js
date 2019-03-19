@@ -22,13 +22,23 @@ class Login extends Component {
         super(props);
         this.redirectToRegister = this.redirectToRegister.bind(this);
         this.state = {
-            userName: "Atif",
-            password: "Atif",
+            userName: "1@1.com",
+            password: "blahblah123",
             isLoading: false
         }
         this.login = this.login.bind(this);
-
+        this.onEmailChange=this.onEmailChange.bind(this);
+        this.onPasswordChange=this.onPasswordChange.bind(this);
     }
+
+    onEmailChange(text) {
+        this.setState({ userName: text });
+    }
+
+    onPasswordChange(text) {
+        this.setState({ password: text });
+    }
+
     componentWillReceiveProps(nextProps) {
         if (this.props.isLoggedIn != nextProps.isLoggedIn) {
             if(nextProps.isLoggedIn=="true"){
@@ -69,6 +79,7 @@ class Login extends Component {
                         autoCapitalize={"none"}
                         placeholderTextColor={"#ffffff"}
                         label="Email"
+                        onChangeText={this.onEmailChange}
                         value={this.state.userName}
                         placeholder="Email"
                     />
@@ -81,6 +92,7 @@ class Login extends Component {
                         value={this.state.password}
                         placeholder="Password"
                         secureTextEntry
+                        onChangeText={this.onPasswordChange}
                         autoCapitalize={"none"}
                         textContentType={"password"}
                     />

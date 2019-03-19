@@ -30,7 +30,7 @@ class Drawer extends Component {
     render() {
         return (<View style={styles.container}>
                 <Image source={placeholder} style={styles.placeholderImage} />
-            <Text style={styles.customerName}> {"Marlin Monroe"}</Text>
+            <Text style={styles.customerName}> {this.props.customer.FullName}</Text>
             <StarRating
             disabled={true}
             containerStyle={styles.ratings}
@@ -64,10 +64,7 @@ class Drawer extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        // clientName:state.loginAuthorization.name,
-        // clientID:state.loginAuthorization.clientID,
-        // clientList:state.loginAuthorization.clientList,
-        // switchAccountsError:state.loginAuthorization.switchAccountsError
+       customer:state.AuthReducer.customer
     }
 };
 function mapDispatchToProps(dispatch) {
