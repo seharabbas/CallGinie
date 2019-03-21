@@ -71,6 +71,9 @@ export default class PinLocation extends Component {
         provider={ PROVIDER_GOOGLE }
         style={ styles.container }
         showsMyLocationButton={true}
+        zoomEnabled={true}
+        scrollEnabled={true}
+        showsScale={true}
         showsUserLocation={true}
         initialRegion={{
           latitude:-6.270565,

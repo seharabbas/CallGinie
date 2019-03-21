@@ -1,12 +1,12 @@
 import React from "react";
 import { createStackNavigator, createDrawerNavigator, DrawerItems } from 'react-navigation';
-import Profile from "../screens/profile/Profile";
+import BookARide from "../screens/bookARide/BookARide";
 import Drawer from "./Drawer";
 
 const DrawerNavigator = createDrawerNavigator(
     {
-        Profile:{
-            screen:Profile,
+        BookARide:{
+            screen:BookARide,
             navigationOptions:{
                 gesturesEnabled: false,
                 swipeEnabled: false,
@@ -15,7 +15,7 @@ const DrawerNavigator = createDrawerNavigator(
         }
     } ,
     {
-        initialRouteName: 'Profile',
+        initialRouteName: 'BookARide',
         contentComponent: (props) => (
 
             <Drawer {...props} />
