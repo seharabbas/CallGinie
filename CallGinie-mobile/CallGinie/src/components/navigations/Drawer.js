@@ -25,8 +25,27 @@ const placeholder = require('../../assets/placeholder.png');
 class Drawer extends Component {
     constructor(props) {
         super(props);
+        this.goToProfile=this.goToProfile.bind(this); 
+        this.goToBookService=this.goToBookService.bind(this);
     }
-
+    goToProfile(){
+        let route='Profile';
+        let focused='true';
+     
+        const navigateAction = NavigationActions.navigate({
+            routeName: route
+        });
+        this.props.navigation.dispatch(navigateAction);
+    }
+    goToBookService(){
+        let route='BookARide';
+        let focused='true';
+     
+        const navigateAction = NavigationActions.navigate({
+            routeName: route
+        });
+        this.props.navigation.dispatch(navigateAction);
+    }
     render() {
         return (<View style={styles.container}>
                 <Image source={placeholder} style={styles.placeholderImage} />
@@ -41,7 +60,10 @@ class Drawer extends Component {
             fullStarColor={"#fcaf17"}
             halfStarColor={"#fcaf17"}
             />
-            <TouchableOpacity style={styles.drawerItemContainer}>
+              <TouchableOpacity style={styles.drawerItemContainer} onPress={this.goToBookService}>
+                <Text style={styles.drawerItemText}>{"Book Service"}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.drawerItemContainer} onPress={this.goToProfile}>
                 <Text style={styles.drawerItemText}>{"Profile"}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.drawerItemContainer}>
