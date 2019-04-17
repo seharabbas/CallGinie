@@ -1,1 +1,1 @@
-export const URL_BASEURL="http://localhost:8080/CallGenie/index.php/";
+export const URL_BASEURL="http://callgenie.000webhostapp.com/CallGenie/CallGenie/index.php/";

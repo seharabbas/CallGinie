@@ -25,3 +25,32 @@ export function getServices() {
         });
     }
 }
+export function getCarServices(){
+
+    let isDevMode = false;
+    let axiosParams = {
+        method: "GET",
+        url: "/CallGenie/CallGenie/index.php/COwner/getCarServices",
+    };
+    NetworkActions.makeHTTPRequest(axiosParams, isDevMode)
+    .then(function (response) {
+        let data = response.data;
+        let i=0;
+        let carServices=[];
+        for(;i<data.length;i++){
+            carServices.push({
+                label:data[i].ServiceName,
+                value:data[i].C_id,
+                amount:data[i].ServiceCharges
+            });
+        }
+        dispatch({
+            type: types.GET_SERVICE_LIST ,
+            payload:{services:carServices}
+        });
+    }).catch(function (error) {
+        dispatch({ type: types.GET_SERVICE_LIST_ERROR });
+        DropDownHolder.getDropDown().alertWithType('error', 'error', "Something try again please try again");
+
+    });
+}

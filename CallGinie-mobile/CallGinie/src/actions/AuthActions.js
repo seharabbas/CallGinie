@@ -10,7 +10,7 @@ export function registerWorkshop(workshop) {
         let isDevMode = false;
         let axiosParams = {
             method: "POST",
-            url: "/CLogin/addWorkshopOwner",
+            url: "CLogin/addWorkshopOwner",
             data: {
                 Username: workshop.email,
                 Password: workshop.password,
@@ -42,7 +42,7 @@ export function registerCustomer(customer) {
         let isDevMode = false;
         let axiosParams = {
             method: "POST",
-            url: "/CLogin/addCarOwner",
+            url: "CLogin/addCarOwner",
             data: {
                 Username: customer.email,
                 Password: customer.password,
@@ -66,9 +66,9 @@ export function registerCustomer(customer) {
 
 function getCustomerProfile(userID,userRole) {
     return new Promise(function (resolve, reject) {
-        let url="/CLogin/getCarOwnerProfile?U_id="+userID;
+        let url="CLogin/getCarOwnerProfile?U_id="+userID;
         if(userRole=="workshopowner"){
-            url="/CLogin/getWorkshopOwnerProfile?U_id="+userID
+            url="CLogin/getWorkshopOwnerProfile?U_id="+userID
         }
         let isDevMode = false;
         let axiosParams = {
@@ -90,9 +90,9 @@ export function login(userName, passWord) {
     return function (dispatch, getState) {
         let isDevMode = false;
         let axiosParams = {
-            method: "POST",
-            url: "/CLogin/login",
-            data: {
+            method: "GET",
+            url: "CLogin/login",
+            params: {
                 Username: userName,
                 Password: passWord
             }
