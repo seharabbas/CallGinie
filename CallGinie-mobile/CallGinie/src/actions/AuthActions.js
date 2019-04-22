@@ -90,9 +90,9 @@ export function login(userName, passWord) {
     return function (dispatch, getState) {
         let isDevMode = false;
         let axiosParams = {
-            method: "GET",
+            method: "POST",
             url: "CLogin/login",
-            params: {
+            data: {
                 Username: userName,
                 Password: passWord
             }

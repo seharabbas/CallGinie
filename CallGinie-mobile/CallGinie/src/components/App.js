@@ -16,7 +16,7 @@ export default class App extends Component {
 
     constructor(properties) {
         super(properties);
-
+        
     }
     componentDidMount() {
         axios.defaults.baseURL = URL_BASEURL;

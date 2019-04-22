@@ -107,7 +107,7 @@ class Registration extends Component {
     render() {
         return (
             <PageTemplate
-                title={"Register Customer"}
+                title={this.state.userType == "mechanic"?"Register Workshop": "Register Customer"}
                 iconName={"chevron-left"}
                 onLeftButtonPress={this.goBack}
             >
