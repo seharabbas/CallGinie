@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
         textAlign: 'left',
         paddingLeft:15,
     },signUpButton:{
-        marginTop:width(40),
+        marginTop:width(20),
         flexDirection:"row",
         justifyContent:"center",
         height:50,

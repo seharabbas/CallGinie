@@ -51,8 +51,9 @@ class Registration extends Component {
     }
     signUpCustomer() {
         let fullName = "";
+         let isValidatingPhone=this.validatePhoneNumber(this.state.phone.length);
         if (this.state.fullName.length == 0 || this.state.password.length == 0
-            || this.state.email.length == 0 || this.state.phone.length == 0) {
+            || this.state.email.length == 0 || this.state.phone.length == 0 || !isValidatingPhone) {
             DropDownHolder.getDropDown().alertWithType('error', 'Error', "Please fill all the fields ");
 
         }
@@ -71,10 +72,23 @@ class Registration extends Component {
     }
     signUpMechanic() {
         let fullName = "";
+        let isValidatingPhone = this.validatePhoneNumber(this.state.phone);
+        let isValidatingCNIC =true;// this.validateCNIC(this.state.cnic);
+        let validateEmail = this.validateEmail(this.state.email);
         if (this.state.fullName.length == 0 || this.state.password.length == 0
             || this.state.email.length == 0 || this.state.phone.length == 0
             || this.state.cnic.length == 0 || this.state.workshopName.length == 0) {
             DropDownHolder.getDropDown().alertWithType('error', 'Error', "Please fill all the fields ");
+
+        }
+        else if(!isValidatingPhone){
+            DropDownHolder.getDropDown().alertWithType('error', 'Error', "Phone number is invalid");
+        }
+        else if(!isValidatingCNIC){
+            DropDownHolder.getDropDown().alertWithType('error', 'Error', "CNIC is invalid");
+        }
+        else if(!validateEmail){
+            DropDownHolder.getDropDown().alertWithType('error', 'Error', "Email is invalid");
 
         }
         else {
@@ -86,10 +100,13 @@ class Registration extends Component {
                 phone: this.state.phone,
                 workshopName: this.state.workshopName
             };
-            this.setState({
-                isSigningUp:true
-            });
-            this.props.registerWorkshop(workshop)
+            // this.setState({
+            //     isSigningUp:true
+            // });
+            this.props.navigation.navigate("PinLocation"
+            ,{workshop:workshop}
+        );
+            //this.props.registerWorkshop(workshop)
         }
     }
     signUp() {
@@ -97,12 +114,48 @@ class Registration extends Component {
             return this.signUpCustomer();
         }
         else {
-            this.props.navigation.navigate("PinLocation");
-           // return this.signUpMechanic();
+            
+            return this.signUpMechanic();
         }
 
 
 
+    }
+
+     validatePhoneNumber(inputTxt)
+    {
+        var phoneNo = /^((\+92)|(0092))-{0,1}\d{3}-{0,1}\d{7}$|^\d{11}$|^\d{4}-\d{7}$/;
+        if(phoneNo.test(inputTxt))
+            {
+            return true;
+            }
+        else
+           {
+            return false;
+            }
+    }
+    validateCNIC(inputTxt){
+        var cnic=/^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$/;
+        if(cnic.test(inputTxt))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+    validateEmail(inputText){
+        var email=/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if(email.test(inputText))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     render() {
         return (
