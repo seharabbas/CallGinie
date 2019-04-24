@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_login extends CI_Model {
+class M_Login extends CI_Model {
     public function login($username,$password)
     {
        $query="select * from users where username=? and password=?";
