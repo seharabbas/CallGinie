@@ -3,7 +3,7 @@ import { createStackNavigator, createDrawerNavigator, DrawerItems } from 'react-
 import BookARide from "../screens/bookARide/BookARide";
 import Profile from "../screens/Profile/Profile"
 import Drawer from "./Drawer";
-
+import CarServices from "../screens/carServicesSettings/CarServices";
 const DrawerNavigator = createDrawerNavigator(
     {
         BookARide:{
@@ -21,10 +21,19 @@ const DrawerNavigator = createDrawerNavigator(
                 swipeEnabled: false,
                 animationEnabled: false 
             }
+        },
+        CarServices:{
+            screen:CarServices,
+            navigationOptions:{
+                gesturesEnabled: false,
+                swipeEnabled: false,
+                animationEnabled: false 
+            }
         }
+
     } ,
     {
-        initialRouteName: 'BookARide',
+        initialRouteName:  'BookARide',
         contentComponent: (props) => (
 
             <Drawer {...props} />

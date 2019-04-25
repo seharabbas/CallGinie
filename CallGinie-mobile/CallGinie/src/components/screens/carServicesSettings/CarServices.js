@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import {
-    TouchableOpacity,
-    View,
-    Image,
-    TextInput,
-    Text,
-    ActivityIndicator
+  FlatList
 } from 'react-native';
 import { styles } from "./Styles";
 import { PageTemplate } from "../../common";
@@ -23,14 +18,22 @@ class CarServices extends Component {
             carServices:[],
             isRefreshing:false
         }
+        this.onPullToRefreshList=this.onPullToRefreshList.bind(this);
     }
     componentWillMount(){
         this.props.getCarServices();
     }
+    onPullToRefreshList(){
+        this.props.getCarServices();
+        this.setState({
+            isRefreshing:true
+        });
+    }
     componentWillReceiveProps(nextProps){
         if(this.props.services!=nextProps.services){
             this.setState({
-                carServices:services
+                carServices:services,
+                isRefreshing:false
             })
         }
     }

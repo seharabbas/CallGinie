@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, View, Dimensions,Text,TouchableOpacity } from 'react-native';
+import { AppRegistry, StyleSheet, View, Dimensions,Text,TouchableOpacity,ActivityIndicator } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import * as RetroMapStyles from '../../../mapStyles/DayMapStyles';
 import { width, height } from "react-native-dimension";
@@ -12,10 +12,15 @@ const LATITUDE = 0;
 const LONGITUDE = 0;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+import { connect } from 'react-redux';
+import { bindActionCreators } from "redux";
+import * as ReduxActions from "../../../actions";
 
-export default class PinLocation extends Component {
-  constructor() {
-    super();
+ class PinLocation extends Component {
+  constructor(props) {
+    super(props);
+    const { params } = this.props.navigation.state;
+    let workshop = params ? params.workshop:null;
     this.state = {
       region: {
         latitude: LATITUDE,
@@ -23,12 +28,26 @@ export default class PinLocation extends Component {
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA,
       },
+      workshop:workshop,
       origin:null,
-      searchPlace:false
+      searchPlace:false,
+      isSigningUp:false
     };
     this.goBack = this.goBack.bind(this);
     this.searchPlace=this.searchPlace.bind(this);
+    this.registerWorkshop=this.registerWorkshop.bind(this);
   }
+  componentWillReceiveProps(nextProps){
+    if(this.props.isRegisterSuccessfully!=nextProps.isRegisterSuccessfully){
+        this.setState({
+            isSigningUp:false
+        });
+        this.props.navigation.pop();
+        this.props.navigation.pop();
+        this.goBack();
+    }
+}
+
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       position => {
@@ -71,6 +90,15 @@ export default class PinLocation extends Component {
       searchPlace:true
     })
   }
+  registerWorkshop(){
+      let workshop=this.state.workshop;
+      let latitude=this.state.origin==null?this.state.region.latitude:this.state.origin.latitude;
+      let longitude=this.state.origin==null?this.state.region.longitude:this.state.origin.longitude;
+      workshop.longitude=longitude;
+      workshop.latitude=latitude;
+      this.setState({isSigningUp:true});
+      this.props.registerWorkshop(workshop);
+  }
   render() {
     return (
       <PageTemplate
@@ -98,9 +126,7 @@ export default class PinLocation extends Component {
          {this.state.origin!=null?(<MapView.Marker
             coordinate={this.state.origin}
             key={0}
-            title={"conrad"}
-            
-            />):null} 
+          />):null} 
           </MapView>
         {/* <TouchableOpacity style={styles.serviceContainer} onPress={this.searchPlace}>
           <Text style={styles.searchText}>{"Search Your Workshop"}</Text>
@@ -167,13 +193,28 @@ export default class PinLocation extends Component {
                         debounce={200}
                     />
                 </View>
-                <TouchableOpacity style={styles.registerButton}>
-                    <Text style={styles.registerText}>{"Register"}</Text>
+                <TouchableOpacity style={styles.registerButton} onPress={this.registerWorkshop}>
+                {this.state.isSigningUp
+                        ?(<ActivityIndicator style={styles.signUpStyle} color={"#FFFFFF"} size={"small"}/>):
+                     <Text style={styles.registerText}>{"Register"}</Text>}
                 </TouchableOpacity>
       </PageTemplate>
     );
   }
 }
+
+
+const mapStateToProps = (state) => {
+  return {
+      isRegisterSuccessfully:state.RegisterReducer.isRegisterSuccessfully,
+      error:state.RegisterReducer.error
+  }
+};
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(ReduxActions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PinLocation);
 
 const styles = StyleSheet.create({
   container: {
@@ -205,5 +246,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '400',
     textAlign: 'center'
-  }
+  },
+  signUpStyle:{
+    color: '#FFFFFF',
+    fontSize: 18,
+    fontWeight: '400',
+    textAlign: 'center'
+}
 });

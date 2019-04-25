@@ -79,6 +79,21 @@ class BookARide extends Component {
     }
 
     render() {
+        if(this.props.userType=="workshopowner"){
+                    return(
+                        <PageTemplate
+                        title={"Dashboard"}
+                        navigation={this.props.navigation}
+                    >
+                    <View style={styles.messageView}>
+                        <Text style={styles.messageText}>
+                            {"Keep calm you don't have any appointments"}
+                        </Text>
+                    </View>
+
+                    </PageTemplate>
+                    )
+        }else{
         return (
             <PageTemplate
                 title={"Book Service"}
@@ -129,10 +144,24 @@ class BookARide extends Component {
             </PageTemplate>
 
         )
+                }
 
     }
 
 }
+
+
+const mapStateToProps = (state) => {
+    return {
+        services: state.ServiceReducer.services,
+        userType: state.AuthReducer.userType
+    }
+};
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(ReduxActions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookARide);
 const styles = StyleSheet.create({
     container: {
         flexDirection: "column",
@@ -200,18 +229,17 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: '400',
         textAlign: 'center'
+    },
+    messageView:{
+        flex:1,
+        flexDirection:"column",
+        justifyContent:"center",
+        alignItems:"center"
+    },messageText:{
+        color: colors.green,
+        fontSize: 30,
+        fontWeight: "400" ,
+        textAlign:"center"
     }
 
 });
-const mapStateToProps = (state) => {
-    return {
-        isRegisterSuccessfully: state.RegisterReducer.isRegisterSuccessfully,
-        error: state.RegisterReducer.error,
-        services: state.ServiceReducer.services
-    }
-};
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(ReduxActions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(BookARide);

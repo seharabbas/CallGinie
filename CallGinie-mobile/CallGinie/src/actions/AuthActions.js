@@ -19,8 +19,8 @@ export function registerWorkshop(workshop) {
                 PhoneNo: workshop.phone,
                 Email: workshop.email,
                 WorkshopName: workshop.workshopName,
-                Latitude: "",
-                Longitude: ""
+                Latitude: workshop.longitude,
+                Longitude: workshop.latitude
             }
         };
         NetworkActions.makeHTTPRequest(axiosParams, isDevMode)
@@ -64,17 +64,17 @@ export function registerCustomer(customer) {
     }
 }
 
-function getCustomerProfile(userID,userRole) {
+function getCustomerProfile(userID, userRole) {
     return new Promise(function (resolve, reject) {
-        let url="CLogin/getCarOwnerProfile?U_id="+userID;
-        if(userRole=="workshopowner"){
-            url="CLogin/getWorkshopOwnerProfile?U_id="+userID
+        let url = "CLogin/getCarOwnerProfile?U_id=" + userID;
+        if (userRole == "workshopowner") {
+            url = "CLogin/getWorkshopOwnerProfile?U_id=" + userID
         }
         let isDevMode = false;
         let axiosParams = {
             method: "GET",
-            url:url,
-            
+            url: url,
+
         };
         NetworkActions.makeHTTPRequest(axiosParams, isDevMode)
             .then(function (response) {
@@ -101,16 +101,29 @@ export function login(userName, passWord) {
             .then(function (response) {
                 let data = response.data;
                 let userRole = data.role;
-                let userID=data.U_id;
-                getCustomerProfile(userID,userRole).then(function (response) {
-                    let customer = response.data;
-                    dispatch({
-                        type: types.LOGIN_SUCCESS, payload: {
-                            userRole: userRole,
-                            customer : customer
-                        }
-                    }); 
-                })
+                let userID = data.U_id;
+                if (data.valid == "false") {
+                    dispatch({ type: types.LOGIN_FAIL });
+                    DropDownHolder.getDropDown().alertWithType('error', 'error', "Something try again please try again");
+                    return;
+                }
+                else {
+                    getCustomerProfile(userID, userRole).then(function (response) {
+                        let customer = response.data;
+                        dispatch({
+                            type: types.LOGIN_SUCCESS, payload: {
+                                userRole: userRole,
+                                customer: customer
+                            }
+                        });
+
+                    })
+                        .catch(function (error) {
+                            dispatch({ type: types.LOGIN_FAIL });
+                            DropDownHolder.getDropDown().alertWithType('error', 'error', "Something try again please try again");
+
+                        });
+                }
             }).catch(function (error) {
                 dispatch({ type: types.LOGIN_FAIL });
                 DropDownHolder.getDropDown().alertWithType('error', 'error', "Something try again please try again");

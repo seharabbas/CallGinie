@@ -64,7 +64,7 @@ class Login extends Component {
             else{
                 this.setState({
                     isLoading: false
-                })
+                });
             }
            
         }

@@ -27,6 +27,7 @@ class Drawer extends Component {
         super(props);
         this.goToProfile=this.goToProfile.bind(this); 
         this.goToBookService=this.goToBookService.bind(this);
+        this.goToCarServices=this.goToCarServices.bind(this);
     }
     goToProfile(){
         let route='Profile';
@@ -46,7 +47,17 @@ class Drawer extends Component {
         });
         this.props.navigation.dispatch(navigateAction);
     }
+    goToCarServices(){
+        let route='CarServices';
+        let focused='true';
+     
+        const navigateAction = NavigationActions.navigate({
+            routeName: route
+        });
+        this.props.navigation.dispatch(navigateAction);
+    }
     render() {
+    
         return (<View style={styles.container}>
                 <Image source={placeholder} style={styles.placeholderImage} />
             <Text style={styles.customerName}> {this.props.customer.FullName}</Text>
@@ -60,18 +71,29 @@ class Drawer extends Component {
             fullStarColor={"#fcaf17"}
             halfStarColor={"#fcaf17"}
             />
-              <TouchableOpacity style={styles.drawerItemContainer} onPress={this.goToBookService}>
+
+           {this.props.userType=='carowner'?
+            <TouchableOpacity style={styles.drawerItemContainer} onPress={this.goToBookService}>
                 <Text style={styles.drawerItemText}>{"Book Service"}</Text>
-            </TouchableOpacity>
+            </TouchableOpacity>:null}
             <TouchableOpacity style={styles.drawerItemContainer} onPress={this.goToProfile}>
                 <Text style={styles.drawerItemText}>{"Profile"}</Text>
             </TouchableOpacity>
+            {this.props.userType=='carowner'?
             <TouchableOpacity style={styles.drawerItemContainer}>
                 <Text style={styles.drawerItemText}>{"Book in Advance"}</Text>
-            </TouchableOpacity>
+            </TouchableOpacity>:null}
+            {this.props.userType=='workshopowner'?
+                <TouchableOpacity style={styles.drawerItemContainer}>
+                    <Text style={styles.drawerItemText}>{"Your Earnings"}</Text>
+                </TouchableOpacity>:null}
             <TouchableOpacity style={styles.drawerItemContainer}>
                 <Text style={styles.drawerItemText}>{"Appointments"}</Text>
             </TouchableOpacity>
+            {this.props.userType=='workshopowner'?
+                <TouchableOpacity style={styles.drawerItemContainer} onPress={this.goToCarServices}>
+                    <Text style={styles.drawerItemText}>{"Car Services"}</Text>
+                </TouchableOpacity>:null}
             <TouchableOpacity style={styles.drawerItemContainer}>
                 <Text style={styles.drawerItemText}>{"Deactivate Accounts"}</Text>
             </TouchableOpacity>
@@ -86,7 +108,8 @@ class Drawer extends Component {
 
 const mapStateToProps = (state) => {
     return {
-       customer:state.AuthReducer.customer
+       customer:state.AuthReducer.customer,
+       userType:state.AuthReducer.userType
     }
 };
 function mapDispatchToProps(dispatch) {
