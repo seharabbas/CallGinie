@@ -28,6 +28,7 @@ class Drawer extends Component {
         this.goToProfile=this.goToProfile.bind(this); 
         this.goToBookService=this.goToBookService.bind(this);
         this.goToCarServices=this.goToCarServices.bind(this);
+        this.goToCustomerAppointmentList=this.goToCustomerAppointmentList.bind(this);
     }
     goToProfile(){
         let route='Profile';
@@ -40,6 +41,15 @@ class Drawer extends Component {
     }
     goToBookService(){
         let route='BookARide';
+        let focused='true';
+     
+        const navigateAction = NavigationActions.navigate({
+            routeName: route
+        });
+        this.props.navigation.dispatch(navigateAction);
+    }
+    goToCustomerAppointmentList(){
+        let route='CustomerAppointmentList';
         let focused='true';
      
         const navigateAction = NavigationActions.navigate({
@@ -87,7 +97,7 @@ class Drawer extends Component {
                 <TouchableOpacity style={styles.drawerItemContainer}>
                     <Text style={styles.drawerItemText}>{"Your Earnings"}</Text>
                 </TouchableOpacity>:null}
-            <TouchableOpacity style={styles.drawerItemContainer}>
+            <TouchableOpacity style={styles.drawerItemContainer} onPress={this.goToCustomerAppointmentList}>
                 <Text style={styles.drawerItemText}>{"Appointments"}</Text>
             </TouchableOpacity>
             {this.props.userType=='workshopowner'?

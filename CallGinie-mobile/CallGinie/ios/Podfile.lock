@@ -8,9 +8,13 @@ PODS:
 DEPENDENCIES:
   - GoogleMaps
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - GoogleMaps
+
 SPEC CHECKSUMS:
   GoogleMaps: c087b8e5dfe87ca6ebf59adb9b4894a4146bec4f
 
 PODFILE CHECKSUM: 6039aa516531511127444036908873e68389f46b
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.6.1

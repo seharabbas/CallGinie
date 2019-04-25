@@ -4,6 +4,7 @@ import BookARide from "../screens/bookARide/BookARide";
 import Profile from "../screens/Profile/Profile"
 import Drawer from "./Drawer";
 import CarServices from "../screens/carServicesSettings/CarServices";
+import CustomerAppointmentList from "../screens/Customer/AppointmentList/AppointmentList";
 const DrawerNavigator = createDrawerNavigator(
     {
         BookARide:{
@@ -24,6 +25,14 @@ const DrawerNavigator = createDrawerNavigator(
         },
         CarServices:{
             screen:CarServices,
+            navigationOptions:{
+                gesturesEnabled: false,
+                swipeEnabled: false,
+                animationEnabled: false 
+            }
+        },
+        CustomerAppointmentList:{
+            screen:CustomerAppointmentList,
             navigationOptions:{
                 gesturesEnabled: false,
                 swipeEnabled: false,
