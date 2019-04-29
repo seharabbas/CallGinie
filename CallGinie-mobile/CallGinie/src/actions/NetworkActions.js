@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {NetInfo} from "react-native";
+import NetInfo from "@react-native-community/netinfo";
 
 export  function makeHTTPRequest(request,isDevMode,dummyData){
   return new Promise(function(resolve,reject) 

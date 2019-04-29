@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
    services:[],
-   error:""
+   error:"",
+   isLoaded:false
 };
 import   * as types from "../actions/types"
 
@@ -9,12 +10,14 @@ export default function ServiceReducer(state = INITIAL_STATE, action) {
         case types.GET_SERVICE_LIST:
             return{
                 ...state,
-                services:action.payload.services
+                services:action.payload.services,
+                isLoaded:true
             }
             case types.GET_SERVICE_LIST_ERROR:
             return{
                 ...state,
                 error:"error",
+                isLoaded:true
             }
         default:
             return state

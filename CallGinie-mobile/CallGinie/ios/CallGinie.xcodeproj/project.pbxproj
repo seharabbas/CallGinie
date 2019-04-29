@@ -77,6 +77,10 @@
 		EB5835E622270D64009B53BB /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB5835D722270D64009B53BB /* Feather.ttf */; };
 		EB5835E722270D64009B53BB /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB5835D822270D64009B53BB /* FontAwesome5_Brands.ttf */; };
 		EB5835E822270D64009B53BB /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB5835D922270D64009B53BB /* AntDesign.ttf */; };
+		EB725E6622744BEE008AACF6 /* libRNCNetInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB725E6222744BDE008AACF6 /* libRNCNetInfo.a */; };
+		EB725E6F2275B495008AACF6 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB725E6E2275B490008AACF6 /* libRNCAsyncStorage.a */; };
+		EB725E812275BF6F008AACF6 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = EB725E752275BF6F008AACF6 /* Contents.json */; };
+		EB725EC922763088008AACF6 /* Ginie_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = EB725E9D22763088008AACF6 /* Ginie_logo.png */; };
 		EBDFBD56226F9D1700C78922 /* libRCTOneSignal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBDFBD3B226F9D1100C78922 /* libRCTOneSignal.a */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
@@ -370,6 +374,27 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNGestureHandler;
 		};
+		EB725E6122744BDE008AACF6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB725E3522744BDE008AACF6 /* RNCNetInfo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNCNetInfo;
+		};
+		EB725E6322744BDE008AACF6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB725E3522744BDE008AACF6 /* RNCNetInfo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B5027B1B2237B30F00F1AABA;
+			remoteInfo = "RNCNetInfo-tvOS";
+		};
+		EB725E6D2275B490008AACF6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB725E672275B490008AACF6 /* RNCAsyncStorage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNCAsyncStorage;
+		};
 		EBDFBD3A226F9D1100C78922 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EBDFBD29226F9D1100C78922 /* RCTOneSignal.xcodeproj */;
@@ -468,6 +493,10 @@
 		EB5835D722270D64009B53BB /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		EB5835D822270D64009B53BB /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Brands.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		EB5835D922270D64009B53BB /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AntDesign.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		EB725E3522744BDE008AACF6 /* RNCNetInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCNetInfo.xcodeproj; path = "../node_modules/@react-native-community/netinfo/ios/RNCNetInfo.xcodeproj"; sourceTree = "<group>"; };
+		EB725E672275B490008AACF6 /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCAsyncStorage.xcodeproj; path = "../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; };
+		EB725E752275BF6F008AACF6 /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Contents.json; path = "../../../../../../Downloads/AppIcons (2)/Assets.xcassets/AppIcon.appiconset/Contents.json"; sourceTree = "<group>"; };
+		EB725E9D22763088008AACF6 /* Ginie_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Ginie_logo.png; path = ../src/assets/Ginie_logo.png; sourceTree = "<group>"; };
 		EBDFBD29226F9D1100C78922 /* RCTOneSignal.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTOneSignal.xcodeproj; path = "../node_modules/react-native-onesignal/ios/RCTOneSignal.xcodeproj"; sourceTree = "<group>"; };
 		EBDFBD57226F9D8400C78922 /* CallGinie.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = CallGinie.entitlements; path = CallGinie/CallGinie.entitlements; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -489,6 +518,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
+				EB725E6F2275B495008AACF6 /* libRNCAsyncStorage.a in Frameworks */,
+				EB725E6622744BEE008AACF6 /* libRNCNetInfo.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
 				EBDFBD56226F9D1700C78922 /* libRCTOneSignal.a in Frameworks */,
@@ -621,7 +652,9 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				EB725E9D22763088008AACF6 /* Ginie_logo.png */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				EB725E752275BF6F008AACF6 /* Contents.json */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
@@ -684,6 +717,8 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				EB725E672275B490008AACF6 /* RNCAsyncStorage.xcodeproj */,
+				EB725E3522744BDE008AACF6 /* RNCNetInfo.xcodeproj */,
 				EBDFBD29226F9D1100C78922 /* RCTOneSignal.xcodeproj */,
 				EB4B69B922396C030048C916 /* AirMaps.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
@@ -855,6 +890,23 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		EB725E3622744BDE008AACF6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EB725E6222744BDE008AACF6 /* libRNCNetInfo.a */,
+				EB725E6422744BDE008AACF6 /* libRNCNetInfo-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EB725E682275B490008AACF6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EB725E6E2275B490008AACF6 /* libRNCAsyncStorage.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		EBDFBD2A226F9D1100C78922 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -894,6 +946,7 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				ECE6F4D3AF3F422C39C86D45 /* [CP] Copy Pods Resources */,
+				1A8AB036BFC64D41329153A4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -980,6 +1033,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -1042,6 +1096,14 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = EB725E682275B490008AACF6 /* Products */;
+					ProjectRef = EB725E672275B490008AACF6 /* RNCAsyncStorage.xcodeproj */;
+				},
+				{
+					ProductGroup = EB725E3622744BDE008AACF6 /* Products */;
+					ProjectRef = EB725E3522744BDE008AACF6 /* RNCNetInfo.xcodeproj */;
 				},
 				{
 					ProductGroup = EB5835B622270AE9009B53BB /* Products */;
@@ -1332,6 +1394,27 @@
 			remoteRef = EB5835B922270AE9009B53BB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		EB725E6222744BDE008AACF6 /* libRNCNetInfo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNCNetInfo.a;
+			remoteRef = EB725E6122744BDE008AACF6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EB725E6422744BDE008AACF6 /* libRNCNetInfo-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRNCNetInfo-tvOS.a";
+			remoteRef = EB725E6322744BDE008AACF6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EB725E6E2275B490008AACF6 /* libRNCAsyncStorage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNCAsyncStorage.a;
+			remoteRef = EB725E6D2275B490008AACF6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		EBDFBD3B226F9D1100C78922 /* libRCTOneSignal.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1353,6 +1436,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB725EC922763088008AACF6 /* Ginie_logo.png in Resources */,
 				EB5835DC22270D64009B53BB /* Ionicons.ttf in Resources */,
 				EB5835E522270D64009B53BB /* FontAwesome.ttf in Resources */,
 				EB5835E622270D64009B53BB /* Feather.ttf in Resources */,
@@ -1366,6 +1450,7 @@
 				EB5835E722270D64009B53BB /* FontAwesome5_Brands.ttf in Resources */,
 				EB5835DA22270D64009B53BB /* Entypo.ttf in Resources */,
 				EB5835DB22270D64009B53BB /* Octicons.ttf in Resources */,
+				EB725E812275BF6F008AACF6 /* Contents.json in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				EB5835DF22270D64009B53BB /* MaterialCommunityIcons.ttf in Resources */,
 				EB5835E222270D64009B53BB /* FontAwesome5_Solid.ttf in Resources */,
@@ -1404,6 +1489,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		1A8AB036BFC64D41329153A4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CallGinie/Pods-CallGinie-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1449,7 +1553,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CallGinie/Pods-CallGinie-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-CallGinie/Pods-CallGinie-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -1460,7 +1564,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CallGinie/Pods-CallGinie-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CallGinie/Pods-CallGinie-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

@@ -23,8 +23,8 @@ class Login extends Component {
         super(props); 
         this.redirectToRegister = this.redirectToRegister.bind(this);
         this.state = {
-            userName: "arslan",
-            password: "123456",
+            userName: "amna@roll.com",
+            password: "1",
             isLoading: false
         }
         OneSignal.init("1f506cb2-b534-4b14-a8f5-bb5aff3ec1fc", {

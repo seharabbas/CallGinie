@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 import Login from '../screens/Login/Login';
+import Splash from "../screens/splash/Splash";
 import Registration from "../screens/registration/Registration";
 import PinLocation from "../screens/pinLocation/PinLocation";
 import DrawerNavigator from "./DrawerNavigator";
@@ -9,6 +10,14 @@ export const SplashNavigator = createStackNavigator(
     {
         Login: {
             screen: Login,
+            navigationOptions:{
+                gesturesEnabled: false,
+                swipeEnabled: false,
+                animationEnabled: false 
+            }
+        },
+        Splash: {
+            screen: Splash,
             navigationOptions:{
                 gesturesEnabled: false,
                 swipeEnabled: false,
@@ -50,7 +59,7 @@ export const SplashNavigator = createStackNavigator(
 
     },
     {
-        initialRouteName: 'Login',
+        initialRouteName: 'Splash',
         headerMode: 'none',
        
     }

@@ -5,6 +5,26 @@ import Profile from "../screens/Profile/Profile"
 import Drawer from "./Drawer";
 import CarServices from "../screens/carServicesSettings/CarServices";
 import CustomerAppointmentList from "../screens/Customer/AppointmentList/AppointmentList";
+
+
+const CarServicesStackNavigator=createStackNavigator(
+   { 
+    CarServices:{
+        screen:CarServices,
+        navigationOptions:{
+            gesturesEnabled: false,
+            swipeEnabled: false,
+            animationEnabled: false 
+        }
+    },
+   }
+);
+
+
+
+
+
+
 const DrawerNavigator = createDrawerNavigator(
     {
         BookARide:{

@@ -18,6 +18,7 @@ import { bindActionCreators } from "redux";
 import * as ReduxActions from "../../../actions";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors } from '../../../config';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 const ASPECT_RATIO = width(100) / height(100);
 const LATITUDE = 0;
@@ -37,6 +38,8 @@ class BookARide extends Component {
         this.state = {
             isServicesVisible: false,
             selectedServices:[],
+            origin:null,
+            isFetchingData:false,
             region: {
                 latitude: LATITUDE,
                 longitude: LONGITUDE,
@@ -47,9 +50,15 @@ class BookARide extends Component {
         this.onServiceSelect = this.onServiceSelect.bind(this);
         this.onSelected = this.onSelected.bind(this);
         this.onCancel = this.onCancel.bind(this);
+        this.bookService=this.bookService.bind(this);
+    }
+    bookService(){
+        this.setState({
+            isFetchingData:true
+        });
     }
     componentDidMount() {
-        this.props.getServices();
+        this.props.getCarServices();
     }
     goBack() {
         this.props.navigation.goBack();
@@ -106,18 +115,22 @@ class BookARide extends Component {
                     showsMyLocationButton={true}
                     zoomEnabled={true}
                     scrollEnabled={true}
+                    loadingEnabled = {true}
+                    loadingIndicatorColor="#666666"
+                    loadingBackgroundColor="#eeeeee"
+                    moveOnMarkerPress = {false}
+                    showsUserLocation={true}
                     showsScale={true}
                     showsUserLocation={true}
-                    initialRegion={{
-                        latitude: -6.270565,
-                        longitude: 106.759550,
-                        latitudeDelta: 1,
-                        longitudeDelta: 1
-                    }}
+                    animateToRegion
                     region={this.state.region}
-
                 >
+                  {this.state.origin!=null?(<MapView.Marker
+            coordinate={this.state.origin}
+            key={0}
+          />):null} 
                 </MapView>
+                
                 <TouchableOpacity style={styles.serviceContainer} onPress={() => { this.onServiceSelect() }}>
                         <Text style={styles.serviceText}>{"Tell me what's wrong"}</Text>
                         {this.state.selectedServices.length>0?(<View style={{marginRight:5}}>
@@ -130,9 +143,75 @@ class BookARide extends Component {
                             </View>
                         </View>):null}
                 </TouchableOpacity>
-                {this.state.selectedServices.length>0?(<TouchableOpacity style={styles.bookService}>
+                <View style={[styles.servicesContainer,{ paddingTop: 20, flex: 1 }]}>
+                    <GooglePlacesAutocomplete
+                        placeholder="Search"
+                        minLength={2} // minimum length of text to search
+                        autoFocus={false}
+                        nearbyPlacesAPI='GooglePlacesSearch'
+                        returnKeyType={"search"}
+                        listViewDisplayed="false"
+                        fetchDetails={true}
+                        renderDescription={row =>
+                            row.description || row.formatted_address || row.name
+                        }
+                        onPress={(data, details = null) => {
+                          let latitude=details.geometry.location.lat;
+                          let longitude=details.geometry.location.lng;
+                          let origin={latitude:latitude,longitude:longitude}
+                          let latitudeDelta=latitude;
+                          let longitudeDelta=latitude * ASPECT_RATIO;
+                          let region ={
+                              latitude: latitude,
+                              longitude: longitude,
+                              latitudeDelta: 0.0043,
+                              longitudeDelta: 0.0034
+                            };
+                          this.setState({
+                            origin:origin,
+                            region:region
+                          });
+                        }}
+                        getDefaultValue={() => {
+                            return ""; // text input default value
+                        }}
+                        query={{
+                            key: "AIzaSyAVJOZw-qv_3s-EX4mlDsXaFWeQJQC1NlM",
+                            language: "en",
+                            components: 'country:pk'
+                            // language of the results
+                        }}
+                        styles={{
+                            description: {
+                                fontWeight: "bold"
+                            },
+                            predefinedPlacesDescription: {
+                                color: "#1faadb"
+                            },
+                            row:{
+                              backgroundColor:"white"
+                            }
+                        }}
+                        currentLocation={true} 
+                        enablePoweredByContainer={false}
+                        GooglePlacesSearchQuery={{
+                            rankby: "distance",
+                        }}
+                        filterReverseGeocodingByTypes={[
+                            "locality",
+                            "administrative_area_level_3"
+                        ]}
+                        debounce={200}
+                    />
+                </View>
+                {this.state.selectedServices.length>0 && !this.state.isFetchingData?(<TouchableOpacity style={styles.bookService} onPress={this.bookService}>
                     <Text style={styles.bookServiceText}>{"Book Service"}</Text>
                 </TouchableOpacity>):null}
+                {this.state.isFetchingData?(
+                    <View>
+                        <Text>{"We are finding help from you0"}</Text>
+                    </View>
+                ):null}
                 <BottomModalFlatListDropDown
                     data={this.props.services}
                     visible={this.state.isServicesVisible}
@@ -182,7 +261,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         position:'absolute',
-        top:30
+        top:120
 
     }
     ,itemContainer:{
@@ -240,6 +319,15 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: "400" ,
         textAlign:"center"
-    }
+    },
+    servicesContainer: {
+      width:width(90),
+      marginLeft:20,
+      justifyContent: "space-between",
+      flexDirection: "row",
+      alignItems: "center",
+      position:'absolute',
+      top:30
+    },
 
 });

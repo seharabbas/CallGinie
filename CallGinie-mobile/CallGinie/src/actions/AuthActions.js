@@ -3,6 +3,7 @@
 import * as NetworkActions from "./NetworkActions";
 import * as types from "./types"
 import { DropDownHolder } from '../components/common/DropDownHolder';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export function registerWorkshop(workshop) {
     return function (dispatch, getState) {
@@ -110,6 +111,14 @@ export function login(userName, passWord) {
                 else {
                     getCustomerProfile(userID, userRole).then(function (response) {
                         let customer = response.data;
+                        customerString = JSON.stringify(customer);
+                        AsyncStorage.multiSet(
+                            [
+                                ["customer", customerString],
+                                ["userRole", userRole]
+
+                            ]
+                        );
                         dispatch({
                             type: types.LOGIN_SUCCESS, payload: {
                                 userRole: userRole,
@@ -131,4 +140,33 @@ export function login(userName, passWord) {
             });
     }
 
+}
+
+
+
+export function fetchLoggedInCustomer() {
+    return function (dispatch, getState) {
+        let userRole = '';
+        let customer = null;
+        AsyncStorage.getAllKeys((err, keys) => {
+            AsyncStorage.multiGet(keys, (err, stores) => {
+                stores.forEach(store => {
+                    if ("userRole" === store[0]) {
+                        userRole = store[1];
+                    }
+                    else if ("customer" === store[0]) {
+                        customer = JSON.parse(store[1]);
+                    }
+                });
+                dispatch({
+                    type: types.IS_ALREADY_LOGGEDIN,
+                    payload: {
+                        userRole: userRole,
+                        customer: customer
+                    }
+                })
+            });
+
+        });
+    }
 }
