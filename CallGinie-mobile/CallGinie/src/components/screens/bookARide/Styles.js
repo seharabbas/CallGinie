@@ -130,12 +130,35 @@ const styles = StyleSheet.create({
          width:width(80)
     },
     workshopDetailContainer:{
-        marginTop:10,
+        marginTop:30,
         flexDirection:"row",
-        justifyContent:"space-between"
+        justifyContent:"space-between",
+        marginHorizontal:5
     },
-    // workshopName:{
-
-    // }
+    actionsContainer:{
+        marginVertical:10,
+        flexDirection:"row",
+        justifyContent: 'space-between',
+        marginHorizontal:20
+    },
+    workshopName:{
+        color: '#47525E',
+        fontSize: 24,
+        fontWeight: '400',
+        textAlign: 'left'
+    },cancelButton:{
+        marginHorizontal:20,
+        marginBottom:10,
+        borderRadius:5,
+        backgroundColor:'#47525E',
+        justifyContent:"center",
+        alignItems:"center",
+        height:50
+    },cancelText:{
+        color: colors.white,
+        fontSize: 18,
+        fontWeight: '400',
+        textAlign: 'center'
+    }
 });
 export default styles;

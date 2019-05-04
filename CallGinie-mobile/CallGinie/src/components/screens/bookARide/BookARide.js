@@ -5,6 +5,7 @@ import {
     Image,
     TextInput,
     StyleSheet,
+    Linking,
     Platform,
     Text,
     Dimensions,
@@ -12,7 +13,7 @@ import {
     PermissionsAndroid
 } from 'react-native';
 //import { styles } from "./Styles";
-import { PageTemplate, BottomModalFlatListDropDown,GooglePlacesSearch } from "../../common";
+import { PageTemplate, BottomModalFlatListDropDown, GooglePlacesSearch } from "../../common";
 import { width, height } from "react-native-dimension";
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { connect } from 'react-redux';
@@ -29,11 +30,9 @@ const LATITUDE = 0;
 const LONGITUDE = 0;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-import ViewOverflow from 'react-native-view-overflow';
+import WorkshopFooter from "./WorkshopFooter";
 
 
-
-const workshop = require('../../../assets/workshop.jpg');
 
 class BookARide extends Component {
     constructor(props) {
@@ -74,11 +73,16 @@ class BookARide extends Component {
             }
         };
 
-        this.setLocationDetail=this.setLocationDetail.bind(this)
+        this.setLocationDetail = this.setLocationDetail.bind(this)
         this.onServiceSelect = this.onServiceSelect.bind(this);
         this.onSelected = this.onSelected.bind(this);
         this.onCancel = this.onCancel.bind(this);
         this.bookService = this.bookService.bind(this);
+        this.openUber=this.openUber.bind(this);
+    }
+
+    openUber(){
+        Linking.openURL('app-settings:')
     }
     async requestCameraPermission() {
         try {
@@ -215,10 +219,10 @@ class BookARide extends Component {
             isServicesVisible: false
         });
     }
-    setLocationDetail(origin,region){
+    setLocationDetail(origin, region) {
         this.setState({
-            origin:origin,
-            region:region
+            origin: origin,
+            region: region
         });
     }
 
@@ -271,8 +275,8 @@ class BookARide extends Component {
                                     name={"car"} />
                             </MapView.Marker>
                             ) : null}
-                            {this.state.workshop != null?
-                            (<MapView.Marker
+                            {this.state.workshop != null ?
+                                (<MapView.Marker
                                     coordinate={this.state.workshop.location}
                                     key={0}
                                 >
@@ -282,8 +286,8 @@ class BookARide extends Component {
                                         color={colors.chili_red}
                                         name={"screwdriver"} />
                                 </MapView.Marker>
-                            ) : null}
-                            {this.state.workshop != null?
+                                ) : null}
+                            {this.state.workshop != null ?
                                 (<MapViewDirections
                                     origin={this.state.origin}
                                     destination={this.state.workshop.location}
@@ -291,25 +295,25 @@ class BookARide extends Component {
                                     strokeWidth={5}
                                     strokeColor="green"
                                     optimizeWaypoints={true}
-                                /> ) : null}
+                                />) : null}
                         </MapView>
                         {this.state.isFetchingData == 'false' ?
-                        (<TouchableOpacity style={styles.serviceContainer} onPress={() => { this.onServiceSelect() }}>
-                            <Text style={styles.serviceText}>{"Tell me what's wrong"}</Text>
-                            {this.state.selectedServices.length > 0 ? (<View style={{ marginRight: 5 }}>
-                                <Icon
-                                    size={30}
-                                    color={colors.dark_grey_1}
-                                    name={"delete-variant"} />
-                                <View style={styles.itemContainer}>
-                                    <Text style={{ color: colors.white, fontSize: 14 }}>{this.state.selectedServices.length}</Text>
-                                </View>
-                            </View>) : null}
-                        </TouchableOpacity>):null}
+                            (<TouchableOpacity style={styles.serviceContainer} onPress={() => { this.onServiceSelect() }}>
+                                <Text style={styles.serviceText}>{"Tell me what's wrong"}</Text>
+                                {this.state.selectedServices.length > 0 ? (<View style={{ marginRight: 5 }}>
+                                    <Icon
+                                        size={30}
+                                        color={colors.dark_grey_1}
+                                        name={"delete-variant"} />
+                                    <View style={styles.itemContainer}>
+                                        <Text style={{ color: colors.white, fontSize: 14 }}>{this.state.selectedServices.length}</Text>
+                                    </View>
+                                </View>) : null}
+                            </TouchableOpacity>) : null}
                         <View style={[styles.servicesContainer, { paddingTop: 20, flex: 1 }]}>
-                           <GooglePlacesSearch 
+                            <GooglePlacesSearch
                                 setLocationResult={this.setLocationDetail}
-                           />
+                            />
                         </View>
                         {this.state.selectedServices.length > 0 && this.state.isFetchingData == 'false' ? (<TouchableOpacity style={styles.bookService} onPress={this.bookService}>
                             <Text style={styles.bookServiceText}>{"Book Service"}</Text>
@@ -320,16 +324,9 @@ class BookARide extends Component {
                             </View>
                         ) : null}
                         {this.state.isFetchingData == 'showWorkshop' ? (
-                          <ViewOverflow style={styles.workshopDetail}>
-                            <View>
-                                <Image source={workshop} resizeMode={"cover"}   style={styles.workshopImage}/>
-                            </View>
-                            <View style={styles.workshopDetailContainer}>
-                                <Text style={styles.workshopName}>{this.state.workshop.name}</Text>
-                            </View>
-                            </ViewOverflow>
-                        ):
-                        null}
+                             <WorkshopFooter workshop={this.state.workshop} />
+                        ) :
+                            null}
                         <BottomModalFlatListDropDown
                             data={this.props.services}
                             visible={this.state.isServicesVisible}
