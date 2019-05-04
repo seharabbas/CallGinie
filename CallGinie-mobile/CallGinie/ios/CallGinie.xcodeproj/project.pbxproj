@@ -38,7 +38,6 @@
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8D2373E87CA94662866D68BE /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F527FDB02B3247FC83C70463 /* libRNGestureHandler.a */; };
-		A57A35ADE70C0C72C0D932FD /* libPods-CallGinie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A9D6AF3DCA6C1EFB3862C38 /* libPods-CallGinie.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		EB4B69A422396BD50048C916 /* AIRDummyView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4B695322396BD50048C916 /* AIRDummyView.m */; };
 		EB4B69A522396BD50048C916 /* AIRGoogleMapUrlTile.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4B695522396BD50048C916 /* AIRGoogleMapUrlTile.m */; };
@@ -84,6 +83,7 @@
 		EBDFBD56226F9D1700C78922 /* libRCTOneSignal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBDFBD3B226F9D1100C78922 /* libRCTOneSignal.a */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
+		FDDA2628C474311F3525C26B /* libPods-CallGinie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD82F1420157838F8B54B103 /* libPods-CallGinie.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -424,15 +424,14 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = CallGinie/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = CallGinie/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
-		18A646FBDAEAA4825717E2E7 /* Pods-CallGinie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CallGinie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CallGinie/Pods-CallGinie.debug.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* CallGinie-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CallGinie-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* CallGinie-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CallGinie-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		39C5E5BFADF37CF92DBAD705 /* Pods-CallGinie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CallGinie.release.xcconfig"; path = "Pods/Target Support Files/Pods-CallGinie/Pods-CallGinie.release.xcconfig"; sourceTree = "<group>"; };
 		5AF7A6EE9D304E44A54C3CDA /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGestureHandler.xcodeproj; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
-		6A9D6AF3DCA6C1EFB3862C38 /* libPods-CallGinie.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CallGinie.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7250DAD50A17824FA954FF49 /* Pods-CallGinie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CallGinie.release.xcconfig"; path = "Pods/Target Support Files/Pods-CallGinie/Pods-CallGinie.release.xcconfig"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
+		7904BE5E89418FF6E37083C3 /* Pods-CallGinie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CallGinie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CallGinie/Pods-CallGinie.debug.xcconfig"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		EB4B695322396BD50048C916 /* AIRDummyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIRDummyView.m; sourceTree = "<group>"; };
@@ -502,6 +501,7 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F527FDB02B3247FC83C70463 /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = "<group>"; };
+		FD82F1420157838F8B54B103 /* libPods-CallGinie.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CallGinie.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -535,7 +535,7 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				8D2373E87CA94662866D68BE /* libRNGestureHandler.a in Frameworks */,
-				A57A35ADE70C0C72C0D932FD /* libPods-CallGinie.a in Frameworks */,
+				FDDA2628C474311F3525C26B /* libPods-CallGinie.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,9 +691,18 @@
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
-				6A9D6AF3DCA6C1EFB3862C38 /* libPods-CallGinie.a */,
+				FD82F1420157838F8B54B103 /* libPods-CallGinie.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		377F5095567585E8AFC54B51 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7904BE5E89418FF6E37083C3 /* Pods-CallGinie.debug.xcconfig */,
+				7250DAD50A17824FA954FF49 /* Pods-CallGinie.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
@@ -758,7 +767,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				EB58358822270AE4009B53BB /* Recovered References */,
-				E42D8505F941D925009B0EF6 /* Pods */,
+				377F5095567585E8AFC54B51 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -783,15 +792,6 @@
 				2D16E6721FA4F8DC00B85C8A /* libRCTBlob-tvOS.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		E42D8505F941D925009B0EF6 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				18A646FBDAEAA4825717E2E7 /* Pods-CallGinie.debug.xcconfig */,
-				39C5E5BFADF37CF92DBAD705 /* Pods-CallGinie.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		EB4B695222396BD40048C916 /* AirGoogleMaps */ = {
@@ -940,13 +940,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "CallGinie" */;
 			buildPhases = (
-				D104ECE8D334F47F3871E084 /* [CP] Check Pods Manifest.lock */,
+				DD8C4490789B51FD0600B251 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				ECE6F4D3AF3F422C39C86D45 /* [CP] Copy Pods Resources */,
-				1A8AB036BFC64D41329153A4 /* [CP] Embed Pods Frameworks */,
+				233D408BBBD9DBD202A6E5D1 /* [CP] Embed Pods Frameworks */,
+				20AA705F64425BA13FACD78B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1490,7 +1490,29 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		1A8AB036BFC64D41329153A4 /* [CP] Embed Pods Frameworks */ = {
+		20AA705F64425BA13FACD78B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CallGinie/Pods-CallGinie-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CallGinie/Pods-CallGinie-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		233D408BBBD9DBD202A6E5D1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1523,7 +1545,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		D104ECE8D334F47F3871E084 /* [CP] Check Pods Manifest.lock */ = {
+		DD8C4490789B51FD0600B251 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1543,28 +1565,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		ECE6F4D3AF3F422C39C86D45 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-CallGinie/Pods-CallGinie-resources.sh",
-				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CallGinie/Pods-CallGinie-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1710,7 +1710,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 18A646FBDAEAA4825717E2E7 /* Pods-CallGinie.debug.xcconfig */;
+			baseConfigurationReference = 7904BE5E89418FF6E37083C3 /* Pods-CallGinie.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CallGinie/CallGinie.entitlements;
@@ -1743,7 +1743,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 39C5E5BFADF37CF92DBAD705 /* Pods-CallGinie.release.xcconfig */;
+			baseConfigurationReference = 7250DAD50A17824FA954FF49 /* Pods-CallGinie.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CallGinie/CallGinie.entitlements;

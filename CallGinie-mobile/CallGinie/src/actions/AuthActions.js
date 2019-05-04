@@ -20,8 +20,8 @@ export function registerWorkshop(workshop) {
                 PhoneNo: workshop.phone,
                 Email: workshop.email,
                 WorkshopName: workshop.workshopName,
-                Latitude: workshop.longitude,
-                Longitude: workshop.latitude
+                Latitude: workshop.latitude7,
+                Longitude: workshop.longitude
             }
         };
         NetworkActions.makeHTTPRequest(axiosParams, isDevMode)

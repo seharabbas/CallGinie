@@ -19,7 +19,7 @@ import * as ReduxActions from "../../../actions";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors } from '../../../config';
 import { styles } from './Styles';
-const profile = require('../../../assets/profile.jpeg');
+const profile = require('../../../assets/profile.png');
 import StarRating from "react-native-star-rating";
 
 

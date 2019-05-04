@@ -33,6 +33,7 @@ export const styles = StyleSheet.create({
        marginTop:10
     },
     registerButtonsContainer:{
+        marginTop:50,
         flexDirection: 'row',
         justifyContent: 'space-between',
      },

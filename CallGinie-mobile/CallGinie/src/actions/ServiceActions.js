@@ -71,8 +71,6 @@ export function getWorkshopServices(){
     
 }
 
-
-
 export function addWorkshopServices(carServices){
     return function (dispatch, getState) {
         let workshopOwnerID = getState().AuthReducer.customer.WO_Id;
@@ -92,6 +90,27 @@ export function addWorkshopServices(carServices){
         }).catch(function (error) {
                 dispatch({ type: types.ADD_WORKSHOP_SERVICES_ERROR });
                 DropDownHolder.getDropDown().alertWithType('error', 'error', "Something try again please try again");
+
+        })
+    }
+}
+
+export function bookAService(bookServiceObj){
+    return function (dispatch, getState) {
+        let userID =  getState().AuthReducer.customer.U_id;
+        bookServiceObj.user_id=userID;
+        let isDevMode=false;
+        let axiosParams = {
+            method: "POST",
+            url: "COwner/bookARide",
+            data:bookServiceObj
+        };
+        NetworkActions.makeHTTPRequest(axiosParams, isDevMode)
+        .then(function (response) {
+            dispatch({ type: types.BOOK_SERVICE });
+        }).catch(function (error) {
+                dispatch({ type: types.BOOK_SERVICE_ERROR });
+                DropDownHolder.getDropDown().alertWithType('error', 'error', "Failed to find you any workshops.");
 
         })
     }

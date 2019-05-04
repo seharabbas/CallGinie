@@ -3,6 +3,7 @@ package com.callginie;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.entria.views.RNViewOverflowPackage;
 import com.reactnativecommunity.netinfo.NetInfoPackage;
 import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import com.airbnb.android.react.maps.MapsPackage;
@@ -28,6 +29,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNViewOverflowPackage(),
             new NetInfoPackage(),
             new ReactNativeOneSignalPackage(),
             new MapsPackage(),
