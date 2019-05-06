@@ -125,6 +125,7 @@ class BookARide extends Component {
 
     componentDidMount() {
         this.props.getCarServices();
+        //this.props.getAppointment() 
         if (Platform.OS == "android") {
             this.requestCameraPermission();
         }
@@ -178,6 +179,26 @@ class BookARide extends Component {
         })
     }
     componentWillReceiveProps(nextProps) {
+        if(this.props.isServiceBooked!=nextProps.isServiceBooked && nextProps.isServiceBooked==false){
+            this.setState({
+                isServicesVisible: false,
+                selectedServices: [],
+                permissionGranted: this.state.permissionGranted,
+                origin: null,
+                workshop: null,
+                workshopLocation:null,
+                isFetchingData: 'false',
+                cancelService:true,
+                isServiceEnded:false,
+                region: {
+                    latitude: LATITUDE,
+                    longitude: LONGITUDE,
+                    latitudeDelta: LATITUDE_DELTA,
+                    longitudeDelta: LONGITUDE_DELTA,
+                }
+            });
+            return;
+        }
         if (this.props.error != nextProps.error) {
             this.setState({
                 isFetchingData: "false"
@@ -342,7 +363,7 @@ class BookARide extends Component {
                              <WorkshopFooter workshop={this.state.workshop}  cancelService={this.state.cancelService}/>
                         ) :
                             null}
-                        <ReceiptViewer isVisible={this.state.isServiceEnded} />
+                        <ReceiptViewer isVisible={this.state.isServiceEnded}   />
                         <BottomModalFlatListDropDown
                             data={this.props.services}
                             visible={this.state.isServicesVisible}
@@ -381,7 +402,7 @@ const mapStateToProps = (state) => {
         workshopLocation:state.BookServiceReducer.workshopLocation,
         appointmentID: state.BookServiceReducer.appointmentID,
         hasMechanicReached:state.BookServiceReducer.hasMechanicReached,
-        appointment:state.BookServiceReducer.appointment
+        appointment:state.BookServiceReducer.receipt
     }
 };
 function mapDispatchToProps(dispatch) {

@@ -45,6 +45,11 @@ export default function BookServiceReducer(state = INITIAL_STATE, action) {
             ...state,
             receipt:action.payload.appointment
         }
+        case types.RESET_APPOINTMENT:{
+            return{
+            ...INITIAL_STATE
+            }
+        }
        
         default:
             return state;

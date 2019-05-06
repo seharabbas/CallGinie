@@ -3,6 +3,11 @@ import { colors } from '../../../config';
 import {StyleSheet} from "react-native"
 
 const styles = StyleSheet.create({
+    bottomModal: {
+        justifyContent: "flex-end",
+        margin: 0,
+        height:height(40)
+      },
     container: {
         flexDirection: "column",
         justifyContent: "flex-start",
@@ -164,8 +169,8 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         padding: 0,
         borderColor: "rgba(0, 0, 0, 0.1)"
-        ,height:height(60)
-      },
+        ,height:height(60),
+     },
       modalHeader: {
         flexDirection: "row",
         justifyContent: "space-between",
@@ -184,13 +189,24 @@ const styles = StyleSheet.create({
        color: "#4a4a4a",
        top: 5
      },
+     cancelContent: {
+       
+        fontSize: 16,
+        fontWeight: "normal",
+        fontStyle: "normal",
+        letterSpacing: 0.76,
+        textAlign: "left",
+        color:colors.light_blue_3,
+        top: 5
+      },
      fareContainer:{
-        flex:1,
-        flexDirection:"column"
+        marginVertical:20,
+
+        flexDirection:"column",
+        justifyContent:"center",
+        alignItems:"center",
      },
      fareHeading:{
-        flexDirection:"row",
-        justifyContent:"center",
         color: '#47525E',
         fontSize: 15,
         fontWeight: '400'

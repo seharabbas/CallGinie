@@ -97,11 +97,39 @@ export function getAppointment() {
 
                 dispatch({
                     type: types.SET_RECEIPT
-                    , payload: { appointment: data }
+                    , payload: { appointment: data.results }
                 });
             }).catch(function (error) {
                 dispatch({ type: types.BOOK_SERVICE_ERROR });
                 DropDownHolder.getDropDown().alertWithType('error', 'Receipt Error', "Sorry, Failed to fetch the receipt");
+             })
+    }
+}
+
+export function resetBookAppointment(){
+    return function (dispatch, getState) {
+    dispatch({
+        type: types.RESET_APPOINTMENT
+    });
+}
+}
+
+export function rateWorkshop(mechanicRating,appointmentID){
+    return function (dispatch, getState) {
+       let isDevMode = false;
+        let axiosParams = {
+            method: "POST",
+            url: "COwner/rateWorkshopOwner",
+            data:{
+                iApptid:appointmentID,
+                rating:mechanicRating
+            }
+        };
+        NetworkActions.makeHTTPRequest(axiosParams, isDevMode)
+            .then(function (response) {
+                let data = response.data;
+            }).catch(function (error) {
+                DropDownHolder.getDropDown().alertWithType('error', 'Rating Error', "Sorry, Failed to rate this workshop");
              })
     }
 }
