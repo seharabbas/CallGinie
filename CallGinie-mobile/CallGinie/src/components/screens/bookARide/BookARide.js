@@ -12,7 +12,6 @@ import {
     ActivityIndicator,
     PermissionsAndroid
 } from 'react-native';
-//import { styles } from "./Styles";
 import { PageTemplate, BottomModalFlatListDropDown, GooglePlacesSearch } from "../../common";
 import { width, height } from "react-native-dimension";
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
@@ -32,6 +31,7 @@ const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 import WorkshopFooter from "./WorkshopFooter";
 
+import { DropDownHolder } from  '../../common/DropDownHolder';//'../../common/DropDownHolder';
 
 
 class BookARide extends Component {
@@ -44,27 +44,17 @@ class BookARide extends Component {
             permissionGranted = true;
         }
         else {
-            this.requestCameraPermission();
+          
         }
         this.state = {
             isServicesVisible: false,
             selectedServices: [],
             permissionGranted: permissionGranted,
             origin: null,
-            // workshop: null,
-            // isFetchingData: 'false',
-            workshop: {
-                name: "Cool Workshop",
-                location: {
-                    latitude: 31.5526,
-                    longitude: 74.3384,
-                    latitudeDelta: 0,
-                    longitudeDelta: 0.05,
-                },
-                ratings: 3,
-                estimatedCost: 400
-            },
-            isFetchingData: "showWorkshop",
+            workshop: null,
+            workshopLocation:null,
+            isFetchingData: 'false',
+            cancelService:true,
             region: {
                 latitude: LATITUDE,
                 longitude: LONGITUDE,
@@ -72,18 +62,16 @@ class BookARide extends Component {
                 longitudeDelta: LONGITUDE_DELTA,
             }
         };
-
+        this.timeout=null;
+        this.setTimerForServices=this.setTimerForServices.bind(this);
         this.setLocationDetail = this.setLocationDetail.bind(this)
         this.onServiceSelect = this.onServiceSelect.bind(this);
         this.onSelected = this.onSelected.bind(this);
         this.onCancel = this.onCancel.bind(this);
         this.bookService = this.bookService.bind(this);
-        this.openUber=this.openUber.bind(this);
+        this.requestCameraPermission=this.requestCameraPermission.bind(this);
     }
 
-    openUber(){
-        Linking.openURL('app-settings:')
-    }
     async requestCameraPermission() {
         try {
             const granted = await PermissionsAndroid.request(
@@ -135,7 +123,9 @@ class BookARide extends Component {
 
     componentDidMount() {
         this.props.getCarServices();
-
+        if (Platform.OS == "android") {
+            this.requestCameraPermission();
+        }
         navigator.geolocation.getCurrentPosition(
             position => {
                 this.setState({
@@ -191,22 +181,40 @@ class BookARide extends Component {
                 isFetchingData: "false"
             });
         }
-        if (this.props.isServiceBooked != nextProps.isServiceBooked) {
+        else if(this.props.isServiceBooked!=nextProps.isServiceBooked){
+                this.setTimerForServices();
+        }
+        if (this.props.workshop != nextProps.workshop) {
             this.setState({
-                workshop: {
-                    name: "Cool Workshop",
-                    location: {
-                        latitude: 31.5526,
-                        longitude: 74.3384,
-                        latitudeDelta: 0,
-                        longitudeDelta: 0.05,
-                    },
-                    ratings: 3,
-                    estimatedCost: 400
-                },
+                workshop: nextProps.workshop,
+                workshopLocation:nextProps.workshopLocation,
                 isFetchingData: "showWorkshop"
             });
+            if(this.timeout!=null){
+                clearTimeout(this.timeout);
+            }
         }
+        if(this.props.workshopLocation!=nextProps.workshopLocation){
+            this.setState({
+                workshopLocation:nextProps.workshopLocation
+            });
+        }
+        if(this.props.hasMechanicReached!=nextProps.hasMechanicReached){
+            DropDownHolder.getDropDown().alertWithType('success', 'success', "Your mechanic has reached your location");
+            this.setState({
+                cancelService:false,
+                workshopLocation:{...this.state.origin}
+            });
+        }
+
+    }
+    setTimerForServices(){
+        this.timeout =setTimeout(()=>{
+          this.setState({
+            isFetchingData: "false"
+          });
+          DropDownHolder.getDropDown().alertWithType('error', 'error', "Failed to find you any workshops.");
+        }, 300000);
     }
     onSelected(selectedList) {
         this.setState({
@@ -271,13 +279,13 @@ class BookARide extends Component {
                                 <Icon
                                     size={40}
                                     style={{ Top: 50 }}
-                                    color={colors.blue_dark}
+                                    color={colors.purple}
                                     name={"car"} />
                             </MapView.Marker>
                             ) : null}
-                            {this.state.workshop != null ?
+                            {this.state.workshopLocation != null ?
                                 (<MapView.Marker
-                                    coordinate={this.state.workshop.location}
+                                    coordinate={this.state.workshopLocation}
                                     key={0}
                                 >
                                     <Icon
@@ -290,7 +298,7 @@ class BookARide extends Component {
                             {this.state.workshop != null ?
                                 (<MapViewDirections
                                     origin={this.state.origin}
-                                    destination={this.state.workshop.location}
+                                    destination={this.state.workshopLocation}
                                     apikey={GOOGLE_API_KEY}
                                     strokeWidth={5}
                                     strokeColor="green"
@@ -324,7 +332,7 @@ class BookARide extends Component {
                             </View>
                         ) : null}
                         {this.state.isFetchingData == 'showWorkshop' ? (
-                             <WorkshopFooter workshop={this.state.workshop} />
+                             <WorkshopFooter workshop={this.state.workshop}  cancelService={this.state.cancelService}/>
                         ) :
                             null}
                         <BottomModalFlatListDropDown
@@ -363,6 +371,10 @@ const mapStateToProps = (state) => {
         userType: state.AuthReducer.userType,
         error: state.BookServiceReducer.error,
         isServiceBooked: state.BookServiceReducer.isServiceBooked,
+        workshop: state.BookServiceReducer.workshop,
+        workshopLocation:state.BookServiceReducer.workshopLocation,
+        appointmentID: state.BookServiceReducer.appointmentID,
+        hasMechanicReached:state.BookServiceReducer.hasMechanicReached
     }
 };
 function mapDispatchToProps(dispatch) {

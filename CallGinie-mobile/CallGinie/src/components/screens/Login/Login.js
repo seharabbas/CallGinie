@@ -29,27 +29,12 @@ class Login extends Component {
             password: "1",
             isLoading: false
         }
-        OneSignal.init("1f506cb2-b534-4b14-a8f5-bb5aff3ec1fc", {
-            kOSSettingsKeyAutoPrompt: true,
-        });
-        OneSignal.getPermissionSubscriptionState((status) => {
-            userID = status.userId;
-
-        });
-        OneSignal.inFocusDisplaying(2);
-        OneSignal.configure();
+       
         this.login = this.login.bind(this);
         this.onEmailChange = this.onEmailChange.bind(this);
         this.onPasswordChange = this.onPasswordChange.bind(this);
-        OneSignal.addEventListener('ids', this.onIds.bind(this));
-
     }
-    onIds(device) {
-        if (device && device.userId) {
-            //  this.props.setPushNotificationUserId(device.userId)
-            console.log(device.userId);
-        }
-    }
+    
     onEmailChange(text) {
         this.setState({ userName: text });
     }

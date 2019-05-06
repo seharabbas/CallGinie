@@ -159,6 +159,42 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: '400',
         textAlign: 'center'
-    }
+    },
+    modalContent: {
+        backgroundColor: "white",
+        padding: 0,
+        borderColor: "rgba(0, 0, 0, 0.1)"
+        ,height:height(60)
+      },
+      modalHeader: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        height: 55,
+        width: "100%",
+        paddingHorizontal: 17,
+        paddingVertical: 10,
+        borderBottomWidth: 0.5
+      },
+     addContent: {
+       fontSize: 16,
+       fontWeight: "normal",
+       fontStyle: "normal",
+       letterSpacing: 0.76,
+       textAlign: "left",
+       color: "#4a4a4a",
+       top: 5
+     },
+     fareContainer:{
+        flex:1,
+        flexDirection:"column"
+     },
+     fareHeading:{
+        flexDirection:"row",
+        justifyContent:"center",
+        color: '#47525E',
+        fontSize: 15,
+        fontWeight: '400'
+     }
+
 });
 export default styles;

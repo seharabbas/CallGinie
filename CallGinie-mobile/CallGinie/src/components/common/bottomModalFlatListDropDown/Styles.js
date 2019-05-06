@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
        color:colors.light_blue_3,
        top: 5
      },
+     
      modalHeader: {
        flexDirection: "row",
        justifyContent: "space-between",

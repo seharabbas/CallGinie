@@ -145,7 +145,7 @@ class BottomModalFlatListDropDown extends Component{
           </View>
           <TouchableOpacity onPress={() => {this.onSelectedPress()}}>
             <View>
-              <Text style={[styles.cancelContent,{marginRight:5}]}>{"Selected("+this.state.selected.length}</Text>
+              <Text style={[styles.cancelContent,{marginRight:5}]}>{"Selected("+this.state.selected.length+")"}</Text>
             </View>
           </TouchableOpacity>
         </View>

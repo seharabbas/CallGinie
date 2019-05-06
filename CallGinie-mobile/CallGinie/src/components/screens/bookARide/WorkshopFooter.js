@@ -57,10 +57,10 @@ export default class WorkshopFooter extends Component {
     }
 
     openCall(){
-        openAnything.Call('+155555555555').catch(err => console.error(err));
+        openAnything.Call('+155555555555').catch(err => {});
     }
     openMessage(){
-        openAnything.Text('+155555555555').catch(err => console.error(err));
+        openAnything.Text('+155555555555').catch(err => {});
 
     }
     render() {
@@ -106,9 +106,9 @@ export default class WorkshopFooter extends Component {
                         />
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={styles.cancelButton}>
+                {this.props.cancelService?(<TouchableOpacity style={styles.cancelButton}>
                     <Text style={styles.cancelText}>{"Cancel Service"}</Text>
-                </TouchableOpacity>
+                </TouchableOpacity>):null}
             </ViewOverflow>
         );
 

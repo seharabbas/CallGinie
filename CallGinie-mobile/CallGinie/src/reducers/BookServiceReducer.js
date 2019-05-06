@@ -1,7 +1,10 @@
 const INITIAL_STATE = {
    isServiceBooked:false,
-   error:""
-
+   error:"",
+   workshop:null,
+   workshopLocation:null,
+   appointmentID:-1,
+   hasMechanicReached:false
 };
 import   * as types from "../actions/types"
 
@@ -10,7 +13,7 @@ export default function BookServiceReducer(state = INITIAL_STATE, action) {
         case types.BOOK_SERVICE:
             return{
                 ...state,
-                isServiceBooked:true,
+                isServiceBooked:!state.isServiceBooked,
                 error:""
             }
         case types.BOOK_SERVICE_ERROR:
@@ -18,7 +21,24 @@ export default function BookServiceReducer(state = INITIAL_STATE, action) {
                 ...state,
                 isServiceBooked:!state.isServiceBooked,
                 error:"error"
-            }
+            };
+        case types.SET_APPOINTMENT_DETAILS:
+            return{
+                ...state,
+                workshop:action.payload.workshop,
+                workshopLocation:action.payload.workshopLocation,
+                appointmentID:action.payload.appointmentID
+            };
+        case types.UPDATE_WORKSHOP_LOCATION:
+        return{
+            ...state,
+            workshopLocation:action.payload.workshopLocation,
+        };
+        case types.MECHANIC_REACHED:
+        return {
+            ...state,
+            hasMechanicReached:true
+        }
         default:
             return state;
     }
