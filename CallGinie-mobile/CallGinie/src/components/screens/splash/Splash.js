@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import * as ReduxActions from "../../../actions";
 import OneSignal from 'react-native-onesignal';
+import { ThemeConsumer } from 'react-native-elements';
 
 class Splash extends Component {
         constructor(props){
@@ -63,6 +64,10 @@ class Splash extends Component {
                         break;
                    case "MechanicReached":
                         this.props.onMechanicReached();
+                        break;
+                   case "end_appointment":
+                        this.props.endService(payload.appointmentID);
+                        break;
                    default:
                         break;
                }

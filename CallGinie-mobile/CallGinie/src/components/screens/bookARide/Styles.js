@@ -194,6 +194,16 @@ const styles = StyleSheet.create({
         color: '#47525E',
         fontSize: 15,
         fontWeight: '400'
+     },
+     serviceText:{
+        color: '#8190A5',
+        fontSize: 15,
+        textAlign: 'left'
+     },
+     serviceTotal:{
+        color: '#8190A5',
+        fontSize: 15,
+        textAlign: 'left'
      }
 
 });

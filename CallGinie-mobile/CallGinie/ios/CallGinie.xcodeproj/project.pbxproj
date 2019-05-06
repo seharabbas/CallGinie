@@ -78,7 +78,6 @@
 		EB5835E822270D64009B53BB /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB5835D922270D64009B53BB /* AntDesign.ttf */; };
 		EB725E6622744BEE008AACF6 /* libRNCNetInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB725E6222744BDE008AACF6 /* libRNCNetInfo.a */; };
 		EB725E6F2275B495008AACF6 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB725E6E2275B490008AACF6 /* libRNCAsyncStorage.a */; };
-		EB725E812275BF6F008AACF6 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = EB725E752275BF6F008AACF6 /* Contents.json */; };
 		EB725EC922763088008AACF6 /* Ginie_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = EB725E9D22763088008AACF6 /* Ginie_logo.png */; };
 		EBDFBD56226F9D1700C78922 /* libRCTOneSignal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBDFBD3B226F9D1100C78922 /* libRCTOneSignal.a */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
@@ -494,7 +493,6 @@
 		EB5835D922270D64009B53BB /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AntDesign.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		EB725E3522744BDE008AACF6 /* RNCNetInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCNetInfo.xcodeproj; path = "../node_modules/@react-native-community/netinfo/ios/RNCNetInfo.xcodeproj"; sourceTree = "<group>"; };
 		EB725E672275B490008AACF6 /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCAsyncStorage.xcodeproj; path = "../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; };
-		EB725E752275BF6F008AACF6 /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Contents.json; path = "../../../../../../Downloads/AppIcons (2)/Assets.xcassets/AppIcon.appiconset/Contents.json"; sourceTree = "<group>"; };
 		EB725E9D22763088008AACF6 /* Ginie_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Ginie_logo.png; path = ../src/assets/Ginie_logo.png; sourceTree = "<group>"; };
 		EBDFBD29226F9D1100C78922 /* RCTOneSignal.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTOneSignal.xcodeproj; path = "../node_modules/react-native-onesignal/ios/RCTOneSignal.xcodeproj"; sourceTree = "<group>"; };
 		EBDFBD57226F9D8400C78922 /* CallGinie.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = CallGinie.entitlements; path = CallGinie/CallGinie.entitlements; sourceTree = "<group>"; };
@@ -654,7 +652,6 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				EB725E9D22763088008AACF6 /* Ginie_logo.png */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
-				EB725E752275BF6F008AACF6 /* Contents.json */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
@@ -1450,7 +1447,6 @@
 				EB5835E722270D64009B53BB /* FontAwesome5_Brands.ttf in Resources */,
 				EB5835DA22270D64009B53BB /* Entypo.ttf in Resources */,
 				EB5835DB22270D64009B53BB /* Octicons.ttf in Resources */,
-				EB725E812275BF6F008AACF6 /* Contents.json in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				EB5835DF22270D64009B53BB /* MaterialCommunityIcons.ttf in Resources */,
 				EB5835E222270D64009B53BB /* FontAwesome5_Solid.ttf in Resources */,

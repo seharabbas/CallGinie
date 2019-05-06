@@ -30,6 +30,7 @@ const LONGITUDE = 0;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 import WorkshopFooter from "./WorkshopFooter";
+import ReceiptViewer from "./ReceiptViewer"
 
 import { DropDownHolder } from  '../../common/DropDownHolder';//'../../common/DropDownHolder';
 
@@ -55,6 +56,7 @@ class BookARide extends Component {
             workshopLocation:null,
             isFetchingData: 'false',
             cancelService:true,
+            isServiceEnded:false,
             region: {
                 latitude: LATITUDE,
                 longitude: LONGITUDE,
@@ -206,6 +208,11 @@ class BookARide extends Component {
                 workshopLocation:{...this.state.origin}
             });
         }
+        if(this.props.appointment!=nextProps.appointment){
+            this.setState({
+                isServiceEnded:true
+            })
+        }
 
     }
     setTimerForServices(){
@@ -335,14 +342,13 @@ class BookARide extends Component {
                              <WorkshopFooter workshop={this.state.workshop}  cancelService={this.state.cancelService}/>
                         ) :
                             null}
+                        <ReceiptViewer isVisible={this.state.isServiceEnded} />
                         <BottomModalFlatListDropDown
                             data={this.props.services}
                             visible={this.state.isServicesVisible}
                             onSelectedPress={this.onSelected}
                             onCancel={this.onCancel}
                         />
-
-
                     </PageTemplate>
 
                 )
@@ -353,8 +359,8 @@ class BookARide extends Component {
                 >
                     <View style={styles.messageView}>
                         <Text style={styles.messageText}>
-                            {"CallGenie needs access to location to"}
-                        </Text>
+                            {"CallGenie needs access to location"}
+                        </Text> 
                     </View>
                 </PageTemplate>
             }
@@ -374,7 +380,8 @@ const mapStateToProps = (state) => {
         workshop: state.BookServiceReducer.workshop,
         workshopLocation:state.BookServiceReducer.workshopLocation,
         appointmentID: state.BookServiceReducer.appointmentID,
-        hasMechanicReached:state.BookServiceReducer.hasMechanicReached
+        hasMechanicReached:state.BookServiceReducer.hasMechanicReached,
+        appointment:state.BookServiceReducer.appointment
     }
 };
 function mapDispatchToProps(dispatch) {

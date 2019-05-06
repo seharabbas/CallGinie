@@ -4,7 +4,8 @@ const INITIAL_STATE = {
    workshop:null,
    workshopLocation:null,
    appointmentID:-1,
-   hasMechanicReached:false
+   hasMechanicReached:false,
+   receipt:null
 };
 import   * as types from "../actions/types"
 
@@ -39,6 +40,12 @@ export default function BookServiceReducer(state = INITIAL_STATE, action) {
             ...state,
             hasMechanicReached:true
         }
+        case types.SET_RECEIPT:
+        return{
+            ...state,
+            receipt:action.payload.appointment
+        }
+       
         default:
             return state;
     }

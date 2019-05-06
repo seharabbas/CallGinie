@@ -4,6 +4,7 @@ import {
     View,
     Image,
     Linking,
+    ActivityIndicator,
     Text,
 } from 'react-native';
 
@@ -19,10 +20,24 @@ class ReceiptViewer extends Component {
         }
     }
     render() {
-        return (
-            <Modal style={styles.modalContent}>
+        if(this.props.appointment==null){
+            return(<Modal style={styles.modalContent} isVisible={this.props.isVisible}>
+                    <ActivityIndicator size="large" color={"green"} />
+            </Modal>);
+        }else{
+ 
+
+        let AppointmentDetails = this.props.appointment.AppointmentDetails;
+        let totalSum = AppointmentDetails.reduce(function(sum, item){
+            return sum = sum+item.TotalAmount;
+        },0);
+        
+        let taxAmount = (totalSum + this.props.appointment.DistanceCharges)* 0.16;
+        let totalCharges=taxAmount+totalSum + this.props.appointment.DistanceCharges
+         return (
+            <Modal style={styles.modalContent} isVisible={this.props.isVisible}>
                 <View style={styles.modalHeader}>
-                    <TouchableOpacity onPress={() => { this.onCancel(this.props) }}>
+                    <TouchableOpacity>
                         <View>
                             <Text style={[styles.cancelContent, { color: colors.red }]}>{"Cancel"}</Text>
                         </View>
@@ -30,7 +45,7 @@ class ReceiptViewer extends Component {
                     <View>
                         <Text style={styles.addContent}>{"Receipt"}</Text>
                     </View>
-                    <TouchableOpacity onPress={() => { this.onSelectedPress() }}>
+                    <TouchableOpacity>
                         <View>
                             <Text style={[styles.cancelContent, { marginRight: 2 }]}>{"Review"}</Text>
                         </View>
@@ -39,15 +54,48 @@ class ReceiptViewer extends Component {
                 <View style={styles.fareContainer}>
                     <Text style={styles.fareHeading}>{"Fare Breakdown"}</Text>
                 </View>
+                <View style={{flexDirection:"row",justifyContent:"space-between"}}>
+                            <Text style={[styles.serviceText,{fontWeight: '700'}]}>{"Service Charges"}</Text>
+                            <Text style={[styles.serviceTotal,{fontWeight: '700'}]}>{"Rs "+totalSum}</Text>
+                </View>
+                 {AppointmentDetails.length>0 && AppointmentDetails.map((service, key) => {
+                    return (
+                        <View key={key} style={{flexDirection:"row",justifyContent:"space-between"}}>
+                            <Text style={styles.serviceText}>{service.ServiceName}</Text>
+                            <Text style={styles.serviceTotal}>{"Rs "+service.TotalAmount}</Text>
+                        </View>
+                    );
+                 })}
+                <View style={{flexDirection:"row",justifyContent:"space-between"}}>
+                            <Text style={[styles.serviceText,{fontWeight: '700'}]}>{"Ride Charges"}</Text>
+                            <Text style={[styles.serviceTotal,{fontWeight: '700'}]}>{"Rs "+this.props.appointment.DistanceCharges}</Text>
+                </View>
+                <View style={{flexDirection:"row",justifyContent:"space-between",marginTop:20}}>
+                            <Text style={[styles.serviceText,{fontWeight: '700'}]}>{"Per Kilometer Charges"}</Text>
+                            <Text style={[styles.serviceTotal,{fontWeight: '700'}]}>{"Rs 90"}</Text>
+                </View>
+                <View style={styles.fareContainer}>
+                    <Text style={styles.fareHeading}>{"Tax Breakdown"}</Text>
+                </View>
+                <View style={{flexDirection:"row",justifyContent:"space-between",marginTop:20}}>
+                            <Text style={[styles.serviceText,{fontWeight: '700'}]}>{"Tax 16%"}</Text>
+                            <Text style={[styles.serviceTotal,{fontWeight: '700'}]}>{"Rs "+taxAmount}</Text>
+                </View>
+                <View style={{flexDirection:"row",justifyContent:"space-between",marginTop:20}}>                            <Text style={[styles.serviceText,{fontWeight: '700'}]}>{"Tax 16%"}</Text>
+                    <Text style={[styles.serviceText,{fontWeight: '700'}]}>{""}</Text>
+                    <Text style={[styles.serviceText,{fontWeight: '700'}]}>{"Total"}</Text>
+                    <Text style={[styles.serviceTotal,{fontWeight: '700'}]}>{"Rs "+totalCharges}</Text>
+                </View>
             </Modal>
         )
+                }
     }
 
 
 }
 const mapStateToProps = (state) => {
     return {
-
+        appointment:state.BookServiceReducer.appointment
     }
 };
 function mapDispatchToProps(dispatch) {
