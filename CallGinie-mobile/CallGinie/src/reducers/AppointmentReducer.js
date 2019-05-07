@@ -22,5 +22,7 @@ export default function AppointmentReducer(state = INITIAL_STATE, action) {
                 ...state,
                 ...INITIAL_STATE
             }
+        default:
+            return state;
     }
 }

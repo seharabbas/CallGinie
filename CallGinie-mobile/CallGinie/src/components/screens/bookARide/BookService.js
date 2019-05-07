@@ -143,8 +143,8 @@ class BookService extends Component {
                             </Text>
                         </TouchableOpacity>
                         <TouchableOpacity>
-                        <Text>
-                        </Text>
+                            <Text>
+                            </Text>
                         </TouchableOpacity>
 
                     </View>
