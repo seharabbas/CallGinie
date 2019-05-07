@@ -220,6 +220,12 @@ const styles = StyleSheet.create({
         color: '#8190A5',
         fontSize: 15,
         textAlign: 'left'
+     },
+     appointmentContainer:{
+        position: "absolute",
+        bottom: 0,
+        height: height(60),
+        backgroundColor: colors.grey ,
      }
 
 });

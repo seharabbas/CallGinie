@@ -34,6 +34,7 @@ class CarServices extends Component {
         this.addWorkshopServices=this.addWorkshopServices.bind(this);
     }
     componentWillMount() {
+        this.props.getCarServices();
         this.props.getWorkshopServices();
     }
     renderSectionFooter() {
@@ -73,7 +74,9 @@ class CarServices extends Component {
                 carServices: nextProps.services,
                 workshopServices:nextProps.workshopServices,
                 isRefreshing: false
-            })
+            });
+            this.props.getWorkshopServices();
+
         }
     }
     renderItem(data) {

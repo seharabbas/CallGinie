@@ -46,7 +46,12 @@ class Login extends Component {
     componentWillReceiveProps(nextProps) {
         if (this.props.isLoggedIn != nextProps.isLoggedIn) {
             if (nextProps.isLoggedIn == "true") {
-                this.props.navigation.navigate("DrawerNavigator");
+                if(nextProps.userType=="workshopowner"){
+                    this.props.navigation.navigate("WorkshopDrawerNavigator");
+
+                }else{
+                    this.props.navigation.navigate("DrawerNavigator");
+                }
             }
             else {
                 this.setState({

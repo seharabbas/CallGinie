@@ -2,14 +2,8 @@ import React, { Component } from 'react';
 import {
     TouchableOpacity,
     View,
-    Image,
-    TextInput,
-    StyleSheet,
-    Linking,
     Platform,
-    Text,
-    Dimensions,
-    ActivityIndicator
+    Text
 } from 'react-native';
 import { PageTemplate, BottomModalFlatListDropDown, GooglePlacesSearch } from "../../common";
 import { width, height } from "react-native-dimension";
@@ -19,7 +13,6 @@ import { bindActionCreators } from "redux";
 import * as ReduxActions from "../../../actions";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors } from '../../../config';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import MapViewDirections from 'react-native-maps-directions';
 import { GOOGLE_API_KEY } from "../../../App_Config";
 import styles from "./Styles";
@@ -29,8 +22,8 @@ const LONGITUDE = 0;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 import WorkshopFooter from "./WorkshopFooter";
-import ReceiptViewer from "./ReceiptViewer"
-import Permissions from 'react-native-permissions'
+import ReceiptViewer from "./ReceiptViewer";
+import Permissions from 'react-native-permissions';
 
 import { DropDownHolder } from  '../../common/DropDownHolder';//'../../common/DropDownHolder';
 
@@ -119,14 +112,18 @@ requestLocationPermission() {
 
 
     componentDidMount() {
+        // if (this.props.userType == "workshopowner") {
+        //     this.props.navigation.navigate("BookService");
+        //     return;
+        // }
         this.props.getCarServices();
-        //this.props.getAppointment() 
         if (Platform.OS == "android") {
             this.requestLocationPermission();
         }
         else{
             this.getCurrentPosition();
         }
+      
     }
 
     getCurrentPosition(){
@@ -265,21 +262,7 @@ requestLocationPermission() {
     }
 
     render() {
-        if (this.props.userType == "workshopowner") {
-            return (
-                <PageTemplate
-                    title={"Dashboard"}
-                    navigation={this.props.navigation}
-                >
-                    <View style={styles.messageView}>
-                        <Text style={styles.messageText}>
-                            {"Keep calm you don't have any appointments"}
-                        </Text>
-                    </View>
-                </PageTemplate>
-            )
-        } else {
-            if (this.state.permissionGranted) {
+         if (this.state.permissionGranted) {
                 return (
                     <PageTemplate
                         title={"Book Service"}
@@ -391,7 +374,7 @@ requestLocationPermission() {
 
 
         }
-    }
+    
 }
 
 const mapStateToProps = (state) => {

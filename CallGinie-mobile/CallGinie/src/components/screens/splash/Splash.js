@@ -84,7 +84,12 @@ class Splash extends Component {
     componentWillReceiveProps(nextProps) {
         if (this.props.isAlreadyLoggedIn != nextProps.isAlreadyLoggedIn) {
             if (nextProps.isLoggedIn == "true") {
-                this.props.navigation.navigate("DrawerNavigator");
+                if(nextProps.userType=="workshopowner"){
+                    this.props.navigation.navigate("WorkshopDrawerNavigator");
+                }else{
+                    this.props.navigation.navigate("DrawerNavigator");
+                }
+              
             }
             else{
                 this.props.navigation.navigate("Login");
@@ -127,7 +132,8 @@ class Splash extends Component {
 const mapStateToProps = (state) => {
     return {
         isAlreadyLoggedIn: state.AuthReducer.isAlreadyLoggedIn,
-        isLoggedIn: state.AuthReducer.isLoggedIn
+        isLoggedIn: state.AuthReducer.isLoggedIn,
+        userType: state.AuthReducer.userType
     }
 };
 function mapDispatchToProps(dispatch) {

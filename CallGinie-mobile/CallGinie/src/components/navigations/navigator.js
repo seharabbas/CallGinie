@@ -5,6 +5,7 @@ import Splash from "../screens/splash/Splash";
 import Registration from "../screens/registration/Registration";
 import PinLocation from "../screens/pinLocation/PinLocation";
 import DrawerNavigator from "./DrawerNavigator";
+import WorkshopDrawerNavigator from "./WorkshopDrawerNavigator";
 import CustomerAppointmentDetails from "../screens/Customer/AppointmentDetails/AppointmentDetails";
 export const SplashNavigator = createStackNavigator(
     {
@@ -42,6 +43,14 @@ export const SplashNavigator = createStackNavigator(
         },
         DrawerNavigator:{
             screen:DrawerNavigator,
+            navigationOptions:{
+                gesturesEnabled: false,
+                swipeEnabled: false,
+                animationEnabled: false 
+            }
+        },
+        WorkshopDrawerNavigator:{
+            screen:WorkshopDrawerNavigator,
             navigationOptions:{
                 gesturesEnabled: false,
                 swipeEnabled: false,

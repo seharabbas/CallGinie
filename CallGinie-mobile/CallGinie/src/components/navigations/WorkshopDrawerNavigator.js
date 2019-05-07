@@ -32,16 +32,9 @@ const BookServiceStackNavigator=createStackNavigator(
     }
 );
 
-const DrawerNavigator = createDrawerNavigator(
+const WorkshopDrawerNavigator = createDrawerNavigator(
     {
-        BookARide:{
-            screen:BookARide,
-            navigationOptions:{
-                gesturesEnabled: false,
-                swipeEnabled: false,
-                animationEnabled: false 
-            }
-        },
+       
         Profile:{
             screen:Profile,
             navigationOptions:{
@@ -51,7 +44,7 @@ const DrawerNavigator = createDrawerNavigator(
             }
         },
         CarServices:{
-            screen:CarServicesStackNavigator,
+            screen:CarServices,
             navigationOptions:{
                 gesturesEnabled: false,
                 swipeEnabled: false,
@@ -67,7 +60,7 @@ const DrawerNavigator = createDrawerNavigator(
             }
         },
         BookService:{
-            screen:BookServiceStackNavigator,
+            screen:BookService,
             navigationOptions:{
                 gesturesEnabled: false,
                 swipeEnabled: false,
@@ -77,7 +70,7 @@ const DrawerNavigator = createDrawerNavigator(
 
     },
     {
-        initialRouteName: 'BookARide',
+        initialRouteName: 'BookService',
         contentComponent: (props) => (
 
             <Drawer {...props} />
@@ -90,4 +83,4 @@ const DrawerNavigator = createDrawerNavigator(
     }
 );
 
-export default DrawerNavigator;
+export default WorkshopDrawerNavigator;
