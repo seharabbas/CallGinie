@@ -20,11 +20,6 @@ const CarServicesStackNavigator=createStackNavigator(
    }
 );
 
-
-
-
-
-
 const DrawerNavigator = createDrawerNavigator(
     {
         BookARide:{
@@ -44,7 +39,7 @@ const DrawerNavigator = createDrawerNavigator(
             }
         },
         CarServices:{
-            screen:CarServices,
+            screen:CarServicesStackNavigator,
             navigationOptions:{
                 gesturesEnabled: false,
                 swipeEnabled: false,

@@ -9,8 +9,7 @@ import {
     Platform,
     Text,
     Dimensions,
-    ActivityIndicator,
-    PermissionsAndroid
+    ActivityIndicator
 } from 'react-native';
 import { PageTemplate, BottomModalFlatListDropDown, GooglePlacesSearch } from "../../common";
 import { width, height } from "react-native-dimension";
@@ -31,6 +30,7 @@ const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 import WorkshopFooter from "./WorkshopFooter";
 import ReceiptViewer from "./ReceiptViewer"
+import Permissions from 'react-native-permissions'
 
 import { DropDownHolder } from  '../../common/DropDownHolder';//'../../common/DropDownHolder';
 
@@ -71,33 +71,28 @@ class BookARide extends Component {
         this.onSelected = this.onSelected.bind(this);
         this.onCancel = this.onCancel.bind(this);
         this.bookService = this.bookService.bind(this);
-        this.requestCameraPermission=this.requestCameraPermission.bind(this);
+        this.getCurrentPosition=this.getCurrentPosition.bind(this);
+        this.requestLocationPermission=this.requestLocationPermission.bind(this);
     }
 
-    async requestCameraPermission() {
-        try {
-            const granted = await PermissionsAndroid.request(
-                PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-                {
-                    title: 'We need access to you location to book service',
-                    message: 'We need access to you location to book service',
-                    buttonNegative: 'Cancel',
-                    buttonPositive: 'OK',
-                },
-            );
-            if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+requestLocationPermission() {
+     Permissions.request('location').then(response => {
+            // Returns once the user has chosen to 'allow' or to 'not allow' access
+            // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
+            this.setState({ photoPermission: response })
+            if (response === 'authorized') {
                 this.setState({
                     permissionGranted: true
                 });
+                this.getCurrentPosition();
             } else {
                 this.setState({
                     permissionGranted: false
                 });
             }
-        } catch (err) {
-            console.warn(err);
-        }
-    }
+          });
+}
+
 
     bookService() {
         this.setState({
@@ -127,8 +122,15 @@ class BookARide extends Component {
         this.props.getCarServices();
         //this.props.getAppointment() 
         if (Platform.OS == "android") {
-            this.requestCameraPermission();
+            this.requestLocationPermission();
         }
+        else{
+            this.getCurrentPosition();
+        }
+    }
+
+    getCurrentPosition(){
+
         navigator.geolocation.getCurrentPosition(
             position => {
                 this.setState({
@@ -151,24 +153,24 @@ class BookARide extends Component {
                 enableHighAccuracy: true, timeout: 1000, maximumAge: 1000
             },
         );
-        this.watchID = navigator.geolocation.watchPosition(
-            position => {
-                this.setState({
-                    region: {
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude,
-                        latitudeDelta: LATITUDE_DELTA,
-                        longitudeDelta: LONGITUDE_DELTA,
-                    },
-                    origin: {
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude,
-                        latitudeDelta: LATITUDE_DELTA,
-                        longitudeDelta: LONGITUDE_DELTA,
-                    }
-                });
-            }
-        );
+        // this.watchID = navigator.geolocation.watchPosition(
+        //     position => {
+        //         this.setState({
+        //             region: {
+        //                 latitude: position.coords.latitude,
+        //                 longitude: position.coords.longitude,
+        //                 latitudeDelta: LATITUDE_DELTA,
+        //                 longitudeDelta: LONGITUDE_DELTA,
+        //             },
+        //             origin: {
+        //                 latitude: position.coords.latitude,
+        //                 longitude: position.coords.longitude,
+        //                 latitudeDelta: LATITUDE_DELTA,
+        //                 longitudeDelta: LONGITUDE_DELTA,
+        //             }
+        //         });
+        //     }
+        // );
     }
     goBack() {
         this.props.navigation.goBack();
