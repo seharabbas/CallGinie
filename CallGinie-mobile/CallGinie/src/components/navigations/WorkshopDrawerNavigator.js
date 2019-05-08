@@ -6,7 +6,7 @@ import Drawer from "./Drawer";
 import CarServices from "../screens/carServicesSettings/CarServices";
 import CustomerAppointmentList from "../screens/Customer/AppointmentList/AppointmentList";
 import BookService from "../screens/bookARide/BookService";
-
+import Bill from "../screens/workshopBill/Bill";
 const CarServicesStackNavigator=createStackNavigator(
    { 
     CarServices:{
@@ -53,6 +53,14 @@ const WorkshopDrawerNavigator = createDrawerNavigator(
         },
         CustomerAppointmentList:{
             screen:CustomerAppointmentList,
+            navigationOptions:{
+                gesturesEnabled: false,
+                swipeEnabled: false,
+                animationEnabled: false 
+            }
+        },
+        Bill:{
+            screen:Bill,
             navigationOptions:{
                 gesturesEnabled: false,
                 swipeEnabled: false,

@@ -57,13 +57,14 @@ export default class WorkshopFooter extends Component {
     }
 
     openCall(){
-        openAnything.Call('+155555555555').catch(err => {});
+        openAnything.Call(this.state.workshop.phoneNumber).catch(err => {});
     }
     openMessage(){
-        openAnything.Text('+155555555555').catch(err => {});
+        openAnything.Text(this.state.workshop.phoneNumber).catch(err => {});
 
     }
     render() {
+        let workshopRating=parseInt(this.state.workshop.rating);
         return (
             <ViewOverflow style={styles.workshopDetail}>
                 <View>
@@ -75,7 +76,7 @@ export default class WorkshopFooter extends Component {
                         disabled={true}
                         // containerStyle={styles.ratings}
                         maxStars={5}
-                        rating={3}
+                        rating={workshopRating}
                         starSize={20}
                         emptyStarColor={"black"}
                         fullStarColor={"#fcaf17"}

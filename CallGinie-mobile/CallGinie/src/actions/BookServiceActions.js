@@ -10,7 +10,7 @@ import { DropDownHolder } from '../components/common/DropDownHolder';
 export function bookAService(bookServiceObj) {
     return function (dispatch, getState) {
         let userID = getState().AuthReducer.customer.U_id;
-        bookServiceObj.user_id = userID;
+   
         let isDevMode = false;
         let axiosParams = {
             method: "POST",
@@ -32,7 +32,8 @@ export function setWorkshopDetailsForAppointment(workshopDetail) {
         let workshop = {
             name: workshopDetail.workshopName,
             estimatedCost: workshopDetail.estimatedCost,
-            rating: workshopDetail.rating
+            rating: workshopDetail.rating,
+            phoneNumber:workshopDetail.phoneNumber
         };
         let workshopLocation = {
             longitude: workshopDetail.long,

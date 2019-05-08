@@ -97,6 +97,7 @@ const colors = {
     lightest_grey:"#F4F4F4",
    green_1:'#00904A',
    dark_orange:'#FF7043',
-   light_purple:'#6772E5'
+   light_purple:'#6772E5',
+   lightest_greys:'#C0CCDA'
   };
  export {colors};

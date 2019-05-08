@@ -106,6 +106,7 @@ requestLocationPermission() {
         location.latitude = latitude;
         bookServiceObj.location = location;
         bookServiceObj.serviceIds = serviceIds;
+        bookServiceObj.carOwnerId=this.props.customer.CO_Id;
         this.props.bookAService(bookServiceObj);
 
     }
@@ -299,7 +300,7 @@ requestLocationPermission() {
                             {this.state.workshopLocation != null ?
                                 (<MapView.Marker
                                     coordinate={this.state.workshopLocation}
-                                    key={0}
+                                    key={1}
                                 >
                                     <Icon
                                         size={40}
@@ -381,6 +382,7 @@ const mapStateToProps = (state) => {
     return {
         services: state.ServiceReducer.services,
         userType: state.AuthReducer.userType,
+        customer:state.AuthReducer.customer,
         error: state.BookServiceReducer.error,
         isServiceBooked: state.BookServiceReducer.isServiceBooked,
         workshop: state.BookServiceReducer.workshop,

@@ -40,8 +40,7 @@ class Splash extends Component {
 
         onIds(device) {
             if (device && device.userId) {
-                //  this.props.setPushNotificationUserId(device.userId)
-                
+                this.props.setPushNotificationUserId(device.userId)
             }
         }
     componentDidMount(){
@@ -67,6 +66,9 @@ class Splash extends Component {
                         break;
                    case "end_appointment":
                         this.props.endService(payload.appointmentID);
+                        break;
+                    case "appointment_received":
+                        this.props.setAppointment(payload);
                         break;
                    default:
                         break;
@@ -106,7 +108,7 @@ class Splash extends Component {
     onOpened(notification){
         let notificationID=notification.notification.payload.notificationID;
         if(this.state.notificationIDs.indexOf(notificationID)==-1){
-            this.notificationMessageManager(notification);
+            this.notificationMessageManager(notification.notification);
         }
         
     }

@@ -17,11 +17,13 @@ import * as ReduxActions from "../../../actions";
 import { colors } from '../../../config';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-class CarServices extends Component {
+class Bill extends Component {
     constructor(props) {
         super(props);
+        const { params } = this.props.navigation.state;
+        const carServices = params ? params.carServices : null;
         this.state = {
-            workshopServices: [],
+            workshopServices: carServices,
             isRefreshing: false,
             selectedServices:[]
         }
@@ -35,10 +37,12 @@ class CarServices extends Component {
     }
     componentWillMount() {
         this.props.getCarServices();
-        this.props.getWorkshopServices();
     }
     renderSectionFooter() {
-            return (<View style={{height:100}}/>);
+            return (<View style={{height:100,flexDirection:Row,justifyContent:"center",alignItems:"center"}}>
+                        <Text>{"Generate Bill"}</Text>
+                    </View>
+            );
         }
     noDataComponent(){
         return(<View style={styles.messageView}>
@@ -75,7 +79,7 @@ class CarServices extends Component {
                 workshopServices:nextProps.workshopServices,
                 isRefreshing: false
             });
-           // this.props.getWorkshopServices();
+            this.props.getWorkshopServices();
 
         }
     }
@@ -143,13 +147,11 @@ class CarServices extends Component {
 const mapStateToProps = (state) => {
     return {
         services: state.ServiceReducer.services,
-        error: state.WorkshopServicesReducer.error,
-        isLoaded: state.WorkshopServicesReducer.isLoaded,
-        workshopServices: state.WorkshopServicesReducer.services
+       
     }
 };
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(ReduxActions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CarServices);
+export default connect(mapStateToProps, mapDispatchToProps)(Bill);

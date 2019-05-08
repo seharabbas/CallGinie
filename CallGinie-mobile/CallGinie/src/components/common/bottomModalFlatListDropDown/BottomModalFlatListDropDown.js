@@ -31,6 +31,9 @@ class BottomModalFlatListDropDown extends Component{
 
 
     onSelect(data){
+      if(this.props.isReadOnly){
+        return;
+      }
       let selectedList=[...this.state.selected]
       let index = selectedList.findIndex(o=>o.value==data.value);
       if(index>=0){
@@ -126,11 +129,12 @@ class BottomModalFlatListDropDown extends Component{
   render(){
     let viewHeightIfKeyboardIsVisible = this.getViewHeight()
     let modalHeightIfKeyboardIsVisible = this.getModalHeight()
-
+    let isReadOnly=this.props.isReadOnly?this.props.isReadOnly:false
     return(
     <Modal 
     isVisible={this.props.visible}
     style={[styles.bottomModal,modalHeightIfKeyboardIsVisible ]} 
+    onSwipeCancel={!isReadOnly}
     avoidKeyboard={false}
     >
       <View style={[styles.modalContent,viewHeightIfKeyboardIsVisible]}>
@@ -145,7 +149,7 @@ class BottomModalFlatListDropDown extends Component{
           </View>
           <TouchableOpacity onPress={() => {this.onSelectedPress()}}>
             <View>
-              <Text style={[styles.cancelContent,{marginRight:5}]}>{"Selected("+this.state.selected.length+")"}</Text>
+            {!isReadOnly?(<Text style={[styles.cancelContent,{marginRight:5}]}>{"Selected("+this.state.selected.length+")"}</Text>):null}
             </View>
           </TouchableOpacity>
         </View>

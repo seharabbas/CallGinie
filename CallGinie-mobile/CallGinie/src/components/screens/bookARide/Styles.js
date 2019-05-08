@@ -224,8 +224,59 @@ const styles = StyleSheet.create({
      appointmentContainer:{
         position: "absolute",
         bottom: 0,
-        height: height(60),
+        width:width(100),
+        height: height(30),
         backgroundColor: colors.grey ,
+     },
+     workshopView:{
+         flexDirection:"row",
+         justifyContent:"space-between",
+         marginTop:20,
+         marginHorizontal:50
+     },
+     generateBillContainer:{
+        flexDirection:"row",
+        justifyContent:"space-between",
+        marginTop:20,
+        marginHorizontal:20
+     },
+     customerName:{
+         color:colors.lightest_greys,
+         fontSize: 24,
+         fontWeight: '400'
+     },
+     acceptButton:{
+        backgroundColor: "#47525E",
+        borderRadius: 2,
+        width: 96,
+        height: 39.27,
+        justifyContent:"center",
+        alignItems:"center"
+     },
+     generateBillButton:{
+        backgroundColor: "#47525E",
+        borderRadius: 2,
+        height: 39.27,
+        justifyContent:"center",
+        alignItems:"center"
+        ,paddingLeft:10
+        ,paddingRight:10
+     },
+     acceptButtonText:{
+        color: '#FFFFFF',
+        fontSize: 14,
+        fontWeight: "500",
+        textAlign: "center"
+     },
+     viewServicesButton:{
+         flexDirection:"row",
+         marginHorizontal:10,
+         borderRadius:5,
+         backgroundColor:"#47525E",
+         alignItems:"center",
+         justifyContent:"center",
+         height:60,
+         marginTop:20
      }
 
 });

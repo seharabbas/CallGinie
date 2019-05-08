@@ -86,9 +86,32 @@ function getCustomerProfile(userID, userRole) {
             });
     });
 }
+function registerDevice(PlayerID, UserID) {
+    return new Promise(function (resolve, reject) {
+        let url = "CLogin/registerDevice";
+        let isDevMode = false;
+        let data = {
+            U_id: UserID,
+            DeviceId: PlayerID
+        }
+        let axiosParams = {
+            method: "POST",
+            url: url,
+            data: data
+        };
+        NetworkActions.makeHTTPRequest(axiosParams, isDevMode)
+            .then(function (response) {
+                resolve(response);
+            })
+            .catch(function (error) {
+                reject(error);
+            });
+    });
+}
 
 export function login(userName, passWord) {
     return function (dispatch, getState) {
+        let playerID = getState().AuthReducer.playerID;
         let isDevMode = false;
         let axiosParams = {
             method: "POST",
@@ -109,30 +132,35 @@ export function login(userName, passWord) {
                     return;
                 }
                 else {
-                    getCustomerProfile(userID, userRole).then(function (response) {
-                        let customer = response.data;
-                        customerString = JSON.stringify(customer);
-                        AsyncStorage.multiSet(
-                            [
-                                ["customer", customerString],
-                                ["userRole", userRole]
+                    registerDevice(playerID,userID).then(function (response) {
+                        getCustomerProfile(userID, userRole).then(function (response) {
+                            let customer = response.data;
+                            customerString = JSON.stringify(customer);
+                            AsyncStorage.multiSet(
+                                [
+                                    ["customer", customerString],
+                                    ["userRole", userRole]
 
-                            ]
-                        );
-                        dispatch({
-                            type: types.LOGIN_SUCCESS, payload: {
-                                userRole: userRole,
-                                customer: customer
-                            }
-                        });
+                                ]
+                            );
+                            dispatch({
+                                type: types.LOGIN_SUCCESS, payload: {
+                                    userRole: userRole,
+                                    customer: customer
+                                }
+                            });
 
-                    })
-                        .catch(function (error) {
+                        }).catch(function (error) {
                             dispatch({ type: types.LOGIN_FAIL });
                             DropDownHolder.getDropDown().alertWithType('error', 'error', "Something try again please try again");
+                        })
+                    }).catch(function (error) {
+                        dispatch({ type: types.LOGIN_FAIL });
+                        DropDownHolder.getDropDown().alertWithType('error', 'error', "Something try again please try again");
 
-                        });
+                    });
                 }
+
             }).catch(function (error) {
                 dispatch({ type: types.LOGIN_FAIL });
                 DropDownHolder.getDropDown().alertWithType('error', 'error', "Something try again please try again");
@@ -168,5 +196,17 @@ export function fetchLoggedInCustomer() {
             });
 
         });
+    }
+}
+
+
+export function setPushNotificationUserId(playerID) {
+    return function (dispatch, getState) {
+        dispatch({
+            type: types.SET_PLAYER_ID,
+            payload: {
+                playerID: playerID
+            }
+        })
     }
 }

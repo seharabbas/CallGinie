@@ -2,7 +2,8 @@ const INITIAL_STATE = {
     isLoggedIn:"",
     userType:""
     ,customer:null,
-    isAlreadyLoggedIn:false
+    isAlreadyLoggedIn:false,
+    playerID:""
 };
 import   * as types from "../actions/types"
 
@@ -28,6 +29,12 @@ export default function AuthReducer(state = INITIAL_STATE, action) {
             customer:action.payload.customer,
             isAlreadyLoggedIn:true
         }
+        case types.SET_PLAYER_ID:
+            return {
+                ...state,
+                playerID:action.payload.playerID
+            
+            }
         default:
             return state
     }
