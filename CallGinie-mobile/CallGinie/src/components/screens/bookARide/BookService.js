@@ -53,6 +53,7 @@ class BookService extends Component {
         this.openCall = this.openCall.bind(this);
         this.openMessage = this.openMessage.bind(this);
         this.sendLocation = this.sendLocation.bind(this);
+        this.monitorUserLocation=this.monitorUserLocation.bind(this);
         this.reachedLocation=this.reachedLocation.bind(this);
         this.openBill=this.openBill.bind(this);
     }
@@ -86,8 +87,9 @@ class BookService extends Component {
                 });
             },
             (error) => console.log(error),
-            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 500 },
+            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 250 },
         );
+     
     }
     componentWillReceiveProps(nextProps) {
         if (this.props.appointment != nextProps.appointment) {
@@ -198,7 +200,7 @@ class BookService extends Component {
         });
     }
     sendLocation(location) {
-        let appointmentID = this.state.appointmentID;
+        let appointmentID = this.props.appointmentID;
         if (appointmentID > 0) {
             let mechanicLocation = {
                 location: {
