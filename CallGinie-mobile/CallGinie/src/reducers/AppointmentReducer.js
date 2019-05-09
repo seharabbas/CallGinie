@@ -2,7 +2,9 @@ const INITIAL_STATE = {
     appointmentDetails: null,
     isAppointmentAccepted: false,
     appointmentID:0,
-    isLocationReached:false
+    isLocationReached:false,
+    isBillGenerated:false,
+    receipt:null
 };
 import * as types from "../actions/types";
 
@@ -31,6 +33,24 @@ export default function AppointmentReducer(state = INITIAL_STATE, action) {
             ...state,
             isLocationReached:true
         }
+        case types.GENERATE_BILL:
+        return{
+            ...state,
+            isBillGenerated:true,
+            receipt:action.payload.receipt
+        }
+        case types.RESET_APPOINTMENT:
+        return{
+            ...state,
+            ...INITIAL_STATE
+        }
+        // case types.SAVE_RECEIPT:
+        // return{
+        //     ...state,
+        //     receipt:action.payload.receipt
+        // }
+        case types.LOGOUT:
+            return INITIAL_STATE;
         default:
             return state;
     }

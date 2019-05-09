@@ -87,6 +87,8 @@ export function addWorkshopServices(carServices){
         NetworkActions.makeHTTPRequest(axiosParams, isDevMode)
         .then(function (response) {
             dispatch({ type: types.ADD_WORKSHOP_SERVICES });
+            dispatch(getCarServices());
+
         }).catch(function (error) {
                 dispatch({ type: types.ADD_WORKSHOP_SERVICES_ERROR });
                 DropDownHolder.getDropDown().alertWithType('error', 'error', "Something try again please try again");

@@ -33,7 +33,8 @@ const INITIAL_STATE = {
                     isAddedSuccessfully:!state.isAddedSuccessfully,
                     error:"error"
             } 
-            
+            case types.LOGOUT:
+                return INITIAL_STATE;
          default:
              return state
      }

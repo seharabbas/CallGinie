@@ -50,7 +50,8 @@ export default function BookServiceReducer(state = INITIAL_STATE, action) {
             ...INITIAL_STATE
             }
         }
-       
+        case types.LOGOUT:
+            return INITIAL_STATE;
         default:
             return state;
     }

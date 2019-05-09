@@ -17,22 +17,15 @@ export default class ContactListItem extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.openContactDetail = this.openContactDetail.bind(this);
+    this.onRemoveService = this.onRemoveService.bind(this);
 
   }
 
-  openContactDetail() {
-    this.props.navigation.navigate({
-      key: "ContactDetailView",
-      routeName: "ContactDetailView",
-      params: {
-        contact: this.props.data
-      }
-    });
+
+
+  onRemoveService(){
+    this.props.onRemoveService(this.props.data.value);
   }
-
-
-
 
   render() {
 
@@ -42,7 +35,9 @@ export default class ContactListItem extends React.PureComponent {
           <Text style={styles.contactName}>{this.props.data.label}</Text>
           <Text style={styles.price}>{'Rs.'+this.props.data.amount}</Text>
         </View>
-        <TouchableOpacity style={{width:50, height:50,justifyContent:'center', alignItems:"flex-end"}}>
+        <TouchableOpacity
+          onPress={this.onRemoveService}   
+         style={{width:50, height:50,justifyContent:'center', alignItems:"flex-end"}}>
         <Icon
           size={20}
           color={colors.dark_grey_1}

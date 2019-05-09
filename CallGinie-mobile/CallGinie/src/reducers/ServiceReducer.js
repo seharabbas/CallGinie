@@ -19,6 +19,8 @@ export default function ServiceReducer(state = INITIAL_STATE, action) {
                 error:"error",
                 isLoaded:true
             }
+            case types.LOGOUT:
+                return INITIAL_STATE;
         default:
             return state
     }

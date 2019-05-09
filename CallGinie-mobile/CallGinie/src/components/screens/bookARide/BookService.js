@@ -56,6 +56,7 @@ class BookService extends Component {
         this.monitorUserLocation=this.monitorUserLocation.bind(this);
         this.reachedLocation=this.reachedLocation.bind(this);
         this.openBill=this.openBill.bind(this);
+        this.openBillDummy=this.openBillDummy.bind(this);
     }
 
     getServices(carServices) {
@@ -87,7 +88,7 @@ class BookService extends Component {
                 });
             },
             (error) => console.log(error),
-            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 250 },
+            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 50 },
         );
      
     }
@@ -194,9 +195,8 @@ class BookService extends Component {
     }
     openBill(){
         this.props.navigation.navigate("Bill", {
-            params: {
-                carServices:this.state.appointment.carServices
-            }
+                carServices:this.state.appointment.carServices,
+                appointmentID:this.state.appointmentID
         });
     }
     sendLocation(location) {
@@ -213,7 +213,25 @@ class BookService extends Component {
         }
 
     }
-
+    openBillDummy(){
+        let carServices= [
+            {
+                "ServiceName": "I dont know whats wrong",
+                "TotalAmount": "Rs. 2000",
+                "ServiceId"	:1
+            },
+            {
+            	"ServiceId":2,
+                "ServiceName": "Warning Lights.",
+                "TotalAmount": "Rs. 200"
+            }
+        ];
+    let appointmentID = 1;
+        this.props.navigation.navigate("Bill", {
+                carServices:carServices,
+                appointmentID:appointmentID
+         });
+    }
     render() {
         if (this.state.appointment == null) {
             return (<PageTemplate
@@ -221,9 +239,11 @@ class BookService extends Component {
                 navigation={this.props.navigation}
             >
                 <View style={styles.messageView}>
+                    <View>
                     <Text style={styles.messageText}>
                         {"Keep calm you don't have any appointments"}
                     </Text>
+                   </View>
                 </View>
 
             </PageTemplate>
@@ -380,7 +400,8 @@ const mapStateToProps = (state) => {
     return {
         appointment: state.AppointmentReducer.appointmentDetails,
         appointmentID: state.AppointmentReducer.appointmentID,
-        isLocationReached: state.AppointmentReducer.isLocationReached
+        isLocationReached: state.AppointmentReducer.isLocationReached,
+        isBillGenerated:state.AppointmentReducer.isBillGenerated
     }
 };
 function mapDispatchToProps(dispatch) {

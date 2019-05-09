@@ -33,6 +33,7 @@ class BookARide extends Component {
         super(props);
         this.goBack = this.goBack.bind(this);
         const { params } = this.props.navigation.state;
+        this.fromScheduledTab = params.fromScheduledTab;
         let permissionGranted = false;
         if (Platform.OS == "ios") {
             permissionGranted = true;
@@ -66,6 +67,7 @@ class BookARide extends Component {
         this.bookService = this.bookService.bind(this);
         this.getCurrentPosition=this.getCurrentPosition.bind(this);
         this.requestLocationPermission=this.requestLocationPermission.bind(this);
+        this.onCancelDialog=this.onCancelDialog.bind(this);
     }
 
 requestLocationPermission() {
@@ -148,7 +150,7 @@ requestLocationPermission() {
             },
             (error) => console.log(error.message),
             {
-                enableHighAccuracy: true, timeout: 1000, maximumAge: 1000
+                enableHighAccuracy: false, timeout: 1000
             },
         );
         // this.watchID = navigator.geolocation.watchPosition(
@@ -255,6 +257,11 @@ requestLocationPermission() {
             isServicesVisible: false
         });
     }
+    onCancelDialog(){
+        this.setState({
+            isServiceEnded:false
+        });
+    }
     setLocationDetail(origin, region) {
         this.setState({
             origin: origin,
@@ -349,7 +356,7 @@ requestLocationPermission() {
                              <WorkshopFooter workshop={this.state.workshop}  cancelService={this.state.cancelService}/>
                         ) :
                             null}
-                        <ReceiptViewer isVisible={this.state.isServiceEnded}   />
+                        <ReceiptViewer isVisible={this.state.isServiceEnded} onCancelDialog={this.onCancelDialog}  />
                         <BottomModalFlatListDropDown
                             data={this.props.services}
                             visible={this.state.isServicesVisible}

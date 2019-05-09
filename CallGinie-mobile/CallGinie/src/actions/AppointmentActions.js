@@ -96,7 +96,7 @@ export function updateMechanicLocation(mechanicLocation) {
     }
 }
 
-export function updateMechanicLocationStatus(){
+export function updateMechanicLocationStatus() {
     return function (dispatch, getState) {
         let isDevMode = false;
         let axiosParams = {
@@ -105,10 +105,71 @@ export function updateMechanicLocationStatus(){
         };
         NetworkActions.makeHTTPRequest(axiosParams, isDevMode)
             .then(function (response) {
-                dispatch({type:types.REACHED_LOCATION})
+                dispatch({ type: types.REACHED_LOCATION })
             }).catch(function (error) {
                 DropDownHolder.getDropDown().alertWithType('error', 'error', "Failed to send your location.");
 
             })
+    }
+}
+
+export function updateAppointmentDetail(appointmentDTO) {
+    return function (dispatch, getState) {
+        let isDevMode = false;
+        let axiosParams = {
+            method: "POST",
+            url: "COwner/UpdateAppointmentDetail",
+            data: appointmentDTO
+        };
+        NetworkActions.makeHTTPRequest(axiosParams, isDevMode)
+            .then(function (response) {
+
+                let axiosParams = {
+                    method: "GET",
+                    url: "COwner/generateBill",
+                    params:{
+                        iApptid:appointmentDTO.iApptid,
+                    }
+                }; 
+                NetworkActions.makeHTTPRequest(axiosParams, isDevMode)
+                .then(function (response) {
+                    let appointment = response.data.results;
+                    dispatch({
+                        type: types.GENERATE_BILL,
+                        payload:{receipt:appointment}
+                    })
+                })
+            }).catch(function (error) {
+                DropDownHolder.getDropDown().alertWithType('error', 'error', "Failed to send your receipt.");
+
+            })
+    }
+}
+
+export function resetAppointment() {
+    return function (dispatch, getState) {
+        dispatch({ type: types.RESET_APPOINTMENT })
+    }
+
+} 
+
+
+export function rateCarOwner(mechanicRating,appointmentID){
+    return function (dispatch, getState) {
+       let isDevMode = false;
+        let axiosParams = {
+            method: "POST",
+            url: "COwner/rateCarOwner",
+            data:{
+                iApptid:appointmentID,
+                rating:mechanicRating
+            }
+        };
+        NetworkActions.makeHTTPRequest(axiosParams, isDevMode)
+            .then(function (response) {
+                let data = response.data;
+            }).catch(function (error) {
+                DropDownHolder.getDropDown().alertWithType('error', 'Rating Error', "Sorry, Failed to rate this workshop");
+             })
     }
 }

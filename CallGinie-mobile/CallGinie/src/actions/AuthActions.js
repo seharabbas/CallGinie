@@ -210,3 +210,12 @@ export function setPushNotificationUserId(playerID) {
         })
     }
 }
+
+export function logout(){
+    return function (dispatch, getState) {
+        dispatch({
+            type: types.LOGOUT,
+            
+        })
+    }
+}

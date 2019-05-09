@@ -18,6 +18,8 @@ export default function RegisterReducer(state = INITIAL_STATE, action) {
                 isRegisterSuccessfully:!state.isRegisterSuccessfully,
                 error:"error"
             }
+        case types.LOGOUT:
+            return INITIAL_STATE;
         default:
             return state
     }

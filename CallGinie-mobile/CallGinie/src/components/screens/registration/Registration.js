@@ -15,6 +15,7 @@ import { DropDownHolder } from '../../common/DropDownHolder';
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import * as ReduxActions from "../../../actions";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 const placeholder = require('../../../assets/placeholder.png');
 
@@ -164,7 +165,7 @@ class Registration extends Component {
                 iconName={"chevron-left"}
                 onLeftButtonPress={this.goBack}
             >
-                <View>
+                <KeyboardAwareScrollView>
                     <View style={styles.fullNameContainer}>
                         <TouchableOpacity>
                             <Image source={placeholder} style={styles.placeholderImage} />
@@ -263,7 +264,7 @@ class Registration extends Component {
                         {this.state.isSigningUp
                         ?(<ActivityIndicator style={styles.signUpStyle} color={"#FFFFFF"} size={"small"}/>):(<Text style={styles.signUpStyle}>Sign Up</Text>)}
                     </TouchableOpacity>
-                </View>
+                </KeyboardAwareScrollView>
             </PageTemplate>
         )
 

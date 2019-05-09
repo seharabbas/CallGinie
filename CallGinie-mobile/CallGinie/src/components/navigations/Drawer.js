@@ -10,7 +10,6 @@ import {
     Platform,
     TouchableHighlight,
     ScrollView,
-    AsyncStorage,
     Alert,
     Image
 } from "react-native";
@@ -19,6 +18,7 @@ import { bindActionCreators } from "redux";
 import * as ReduxActions from "../../actions";
 import StarRating from "react-native-star-rating";
 import styles from "./Styles";
+import AsyncStorage from '@react-native-community/async-storage';
 
 const placeholder = require('../../assets/placeholder.png');
 
@@ -29,6 +29,9 @@ class Drawer extends Component {
         this.goToBookService=this.goToBookService.bind(this);
         this.goToCarServices=this.goToCarServices.bind(this);
         this.goToCustomerAppointmentList=this.goToCustomerAppointmentList.bind(this);
+        this.logoutUser=this.logoutUser.bind(this);
+        this.logout=this.logout.bind(this);
+        this.logoutConfirm=this.logoutConfirm.bind(this);
     }
     goToProfile(){
         let route='Profile';
@@ -66,6 +69,42 @@ class Drawer extends Component {
         });
         this.props.navigation.dispatch(navigateAction);
     }
+    logout(){
+       
+          const resetAction = StackActions.reset({
+            index: 0,
+            key: null,
+            actions: [NavigationActions.navigate({ routeName: "Splash" })]
+          },
+            {
+              index: 1,
+              key: null,
+              actions: [NavigationActions.navigate({ routeName: "Login" })]
+            }
+          );
+          this.props.navigation.dispatch(resetAction);
+          this.props.logout();
+    }
+    logoutConfirm() {
+        AsyncStorage.clear().then(() => {
+          this.logout();
+        });
+      }
+    logoutUser(){
+       Alert.alert(
+              'Log out',
+              'Do you want to logout?',
+              [
+                { text: 'Cancel', onPress: () => { return null } },
+                {
+                  text: 'Confirm', onPress: this.logoutConfirm
+                },
+              ],
+              { cancelable: false }
+            )
+          }
+        
+    
     render() {
     
         return (<View style={styles.container}>
@@ -94,7 +133,7 @@ class Drawer extends Component {
                 <Text style={styles.drawerItemText}>{"Book in Advance"}</Text>
             </TouchableOpacity>:null}
             {this.props.userType=='workshopowner'?
-                <TouchableOpacity style={styles.drawerItemContainer}>
+                <TouchableOpacity style={styles.drawerItemContainer}  onPress={this.goToCustomerAppointmentList}>
                     <Text style={styles.drawerItemText}>{"Your Earnings"}</Text>
                 </TouchableOpacity>:null}
             <TouchableOpacity style={styles.drawerItemContainer} onPress={this.goToCustomerAppointmentList}>
@@ -104,12 +143,12 @@ class Drawer extends Component {
                 <TouchableOpacity style={styles.drawerItemContainer} onPress={this.goToCarServices}>
                     <Text style={styles.drawerItemText}>{"Car Services"}</Text>
                 </TouchableOpacity>:null}
-            <TouchableOpacity style={styles.drawerItemContainer}>
-                <Text style={styles.drawerItemText}>{"Deactivate Accounts"}</Text>
+            <TouchableOpacity style={styles.drawerItemContainer} onPress={this.logoutUser}>
+                <Text style={styles.drawerItemText}>{"Logout"}</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.drawerItemContainer}>
+            {/* <TouchableOpacity style={styles.drawerItemContainer}>
                 <Text style={styles.drawerItemText}>{"Change Password"}</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
         </View>
         );
     }

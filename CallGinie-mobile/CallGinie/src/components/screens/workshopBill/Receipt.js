@@ -23,15 +23,15 @@ class ReceiptViewer extends Component {
         this.state = {
             receipt: null,
             reviewWorkshop: false,
-            mechanicRating:0
+            mechanicRating:0,
+            appointmentID:-1
         }
         this.cancelModal = this.cancelModal.bind(this);
         this.reviewWorkshop = this.reviewWorkshop.bind(this);
         this.onStarRatingPress = this.onStarRatingPress.bind(this);
-        this.rateWorkshop = this.rateWorkshop.bind(this); 
+        this.rateCarOwner = this.rateCarOwner.bind(this); 
     }
     cancelModal() {
-        this.props.resetBookAppointment();
         this.props.onCancelDialog();
     }
     reviewWorkshop() {
@@ -39,15 +39,22 @@ class ReceiptViewer extends Component {
             reviewWorkshop: true
         })
     }
+    componentWillReceiveProps(nextProps){
+        if(this.props.appointmentID!=nextProps.appointmentID){
+            this.setState({
+                appointmentID:appointmentID
+            });
+        }
+    }
     onStarRatingPress(rating){
         this.setState({
             mechanicRating:rating
         });
 
     }
-    rateWorkshop(){
-        this.props.rateWorkshop(this.state.mechanicRating,this.props.appointmentID);
-        this.cancelModal();
+    rateCarOwner(){        
+        this.props.rateCarOwner(this.state.mechanicRating,this.state.appointmentID);
+        this.props.onCancelDialog();
        
     }
     render() {
@@ -64,9 +71,9 @@ class ReceiptViewer extends Component {
                             <View>
                                 <Text style={styles.addContent}>{""}</Text>
                             </View>
-                            <TouchableOpacity onPress={this.rateWorkshop}>
+                            <TouchableOpacity onPress={this.rateCarOwner}>
                                 <View>
-                                    <Text style={[styles.cancelContent, { marginRight: 2 }]}>{"Rate Workshop"}</Text>
+                                    <Text style={[styles.cancelContent, { marginRight: 2 }]}>{"Rate CarOwner"}</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
@@ -170,8 +177,7 @@ class ReceiptViewer extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        appointment: state.BookServiceReducer.receipt,
-        appointmentID:state.BookServiceReducer.appointmentID
+        appointment: state.AppointmentReducer.receipt,
     }
 };
 function mapDispatchToProps(dispatch) {

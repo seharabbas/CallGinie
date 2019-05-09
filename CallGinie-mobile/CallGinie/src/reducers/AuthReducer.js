@@ -35,6 +35,8 @@ export default function AuthReducer(state = INITIAL_STATE, action) {
                 playerID:action.payload.playerID
             
             }
+        case types.LOGOUT:
+            return INITIAL_STATE;
         default:
             return state
     }

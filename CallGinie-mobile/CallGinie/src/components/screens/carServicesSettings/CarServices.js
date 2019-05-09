@@ -23,15 +23,18 @@ class CarServices extends Component {
         this.state = {
             workshopServices: [],
             isRefreshing: false,
-            selectedServices:[]
+            selectedServices:[],
+            isSaving:false
         }
         this.onServiceSelect=this.onServiceSelect.bind(this);
         this.onPullToRefreshList = this.onPullToRefreshList.bind(this);
         this.renderSectionFooter = this.renderSectionFooter.bind(this);
         this.onSelected=this.onSelected.bind(this);
+        this.onRemoveService=this.onRemoveService.bind(this);
         this.onCancel=this.onCancel.bind(this);
         this.noDataComponent=this.noDataComponent.bind(this);
         this.addWorkshopServices=this.addWorkshopServices.bind(this);
+        this.renderItem=this.renderItem.bind(this);
     }
     componentWillMount() {
         this.props.getCarServices();
@@ -51,11 +54,38 @@ class CarServices extends Component {
             isServicesVisible: false
         })
     }
-    onSelected(selectedList){
+  
+    onSelected(selectedList) {
+        let services=[];
+        let workshopServices=[...this.state.workshopServices];
+        for(i=0;i<selectedList.length;i++){ 
+            let currentService = selectedList[i];
+            let index= workshopServices.findIndex(x=>x.ServiceId==currentService.value);
+            if(index == -1){
+                workshopServices.push({
+                    ServiceId:parseInt(currentService.value),
+                    ServiceName:currentService.label,
+                    TotalAmount:currentService.amount
+                });
+            }
+        }
         this.setState({
-            selectedServices:[...selectedList],
-            isServicesVisible:false
-        })
+            workshopServices:workshopServices,
+            selectedServices: [...selectedList],
+            isServicesVisible: false
+        });
+    }
+
+    onRemoveService(serviceValue){
+        let workshopServices = [...this.state.workshopServices];
+        let ServiceID=parseInt(serviceValue);
+        let index = workshopServices.findIndex(x=>x.value==ServiceID);
+        if(index > -1){
+            workshopServices.splice(index,1);
+        }
+        this.setState({
+            workshopServices:workshopServices
+        });
     }
     onServiceSelect() {
         this.setState({
@@ -78,12 +108,20 @@ class CarServices extends Component {
            // this.props.getWorkshopServices();
 
         }
+        if(this.props.isAddedSuccessfully != nextProps.isAddedSuccessfully){
+            this.props.getCarServices();
+            this.setState({
+                isSaving:false,
+                selectedList:[]
+            })
+        }
     }
     renderItem(data) {
         let { item, index } = data;
         return (
             <Row
                 data={item}
+                onRemoveService={this.onRemoveService}
             />
         )
     }
@@ -99,6 +137,9 @@ class CarServices extends Component {
             let id=parseInt(this.state.selectedServices[i].value);
             serviceIds.push(id);
         }
+        this.setState({
+            isSaving:true
+        });
         this.props.addWorkshopServices(serviceIds);
     }
 
@@ -119,13 +160,13 @@ class CarServices extends Component {
                     ListFooterComponent={this.renderSectionFooter}
                 />) :
                  (<View style={{flex:1,flexDirection:"column",justifyContent:"center",alignItems:"center"}}><ActivityIndicator size={"large"} color={colors.blue} /></View>)}
-            <TouchableOpacity style={styles.plusIcon} onPress={() => { this.onServiceSelect() }}>
+            {!this.state.isSaving?<TouchableOpacity style={styles.plusIcon} onPress={() => { this.onServiceSelect() }}>
                 <Icon
                     size={30}
                     color={colors.white}
                     name={"plus"} />
-            </TouchableOpacity>
-            {this.state.selectedServices.length>0?(<TouchableOpacity style={styles.workshopServicesButton} onPress={this.addWorkshopServices}>
+            </TouchableOpacity>:null}
+            {this.state.selectedServices.length>0 && !this.state.isSaving?(<TouchableOpacity style={styles.workshopServicesButton} onPress={this.addWorkshopServices}>
                 <Text style={styles.registerText} >{"Add Services ("+this.state.selectedServices.length+")"}</Text>
             </TouchableOpacity>):null}
             <BottomModalFlatListDropDown
@@ -145,7 +186,8 @@ const mapStateToProps = (state) => {
         services: state.ServiceReducer.services,
         error: state.WorkshopServicesReducer.error,
         isLoaded: state.WorkshopServicesReducer.isLoaded,
-        workshopServices: state.WorkshopServicesReducer.services
+        workshopServices: state.WorkshopServicesReducer.services,
+        isAddedSuccessfully:state.WorkshopServicesReducer.isAddedSuccessfully
     }
 };
 function mapDispatchToProps(dispatch) {
