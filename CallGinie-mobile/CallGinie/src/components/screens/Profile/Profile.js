@@ -32,12 +32,7 @@ class Profile extends Component {
             <View style={styles.container}>
                 <Image source={profile} resizeMode={"contain"} style={styles.profile} />
                 <View style={styles.editIcon}>
-                <TouchableOpacity style={{height:50,width:50,justifyContent:"flex-end"}}>
-                <Icon
-                    size={30} 
-                    color={colors.white}
-                    name={"pencil"} />
-                </TouchableOpacity>
+                
                 </View>
                 <View style={styles.nameView}>
                     <Text style={styles.name}>{this.props.customer.FullName}</Text>  

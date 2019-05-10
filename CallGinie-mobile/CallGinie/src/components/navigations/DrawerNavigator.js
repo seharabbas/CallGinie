@@ -42,6 +42,14 @@ const DrawerNavigator = createDrawerNavigator(
                 animationEnabled: false 
             }
         },
+        ScheduleARide:{
+            screen:BookARide,
+            navigationOptions:{
+                gesturesEnabled: false,
+                swipeEnabled: false,
+                animationEnabled: false 
+            }
+        },
         Profile:{
             screen:Profile,
             navigationOptions:{

@@ -30,6 +30,7 @@ class Drawer extends Component {
         this.goToCarServices=this.goToCarServices.bind(this);
         this.goToCustomerAppointmentList=this.goToCustomerAppointmentList.bind(this);
         this.logoutUser=this.logoutUser.bind(this);
+        this.goToBookInAdvance=this.goToBookInAdvance.bind(this);
         this.logout=this.logout.bind(this);
         this.logoutConfirm=this.logoutConfirm.bind(this);
     }
@@ -47,7 +48,19 @@ class Drawer extends Component {
         let focused='true';
      
         const navigateAction = NavigationActions.navigate({
-            routeName: route
+            routeName: route,
+            key: 'bookARide'
+        });
+        this.props.navigation.dispatch(navigateAction);
+    }
+    goToBookInAdvance(){
+        let route='ScheduleARide';
+        let focused='true';
+     
+        const navigateAction = NavigationActions.navigate({
+            routeName: route,
+            key: 'BookInAdvance',
+            params: { fromScheduledTab: true }
         });
         this.props.navigation.dispatch(navigateAction);
     }
@@ -56,7 +69,7 @@ class Drawer extends Component {
         let focused='true';
      
         const navigateAction = NavigationActions.navigate({
-            routeName: route
+            routeName: route,
         });
         this.props.navigation.dispatch(navigateAction);
     }
@@ -129,7 +142,7 @@ class Drawer extends Component {
                 <Text style={styles.drawerItemText}>{"Profile"}</Text>
             </TouchableOpacity>
             {this.props.userType=='carowner'?
-            <TouchableOpacity style={styles.drawerItemContainer}>
+            <TouchableOpacity style={styles.drawerItemContainer} onPress={this.goToBookInAdvance}>
                 <Text style={styles.drawerItemText}>{"Book in Advance"}</Text>
             </TouchableOpacity>:null}
             {this.props.userType=='workshopowner'?

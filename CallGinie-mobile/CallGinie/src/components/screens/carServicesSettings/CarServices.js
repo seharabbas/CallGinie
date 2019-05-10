@@ -24,7 +24,8 @@ class CarServices extends Component {
             workshopServices: [],
             isRefreshing: false,
             selectedServices:[],
-            isSaving:false
+            isSaving:false,
+            isLoaded:this.props.isLoaded
         }
         this.onServiceSelect=this.onServiceSelect.bind(this);
         this.onPullToRefreshList = this.onPullToRefreshList.bind(this);
@@ -62,11 +63,7 @@ class CarServices extends Component {
             let currentService = selectedList[i];
             let index= workshopServices.findIndex(x=>x.ServiceId==currentService.value);
             if(index == -1){
-                workshopServices.push({
-                    ServiceId:parseInt(currentService.value),
-                    ServiceName:currentService.label,
-                    TotalAmount:currentService.amount
-                });
+                workshopServices.push(currentService);
             }
         }
         this.setState({
@@ -99,11 +96,12 @@ class CarServices extends Component {
         });
     }
     componentWillReceiveProps(nextProps) {
-        if (this.props != nextProps) {
+        if (this.props.services != nextProps.services) {
             this.setState({
                 carServices: nextProps.services,
                 workshopServices:nextProps.workshopServices,
-                isRefreshing: false
+                isRefreshing: false,
+                isLoaded:true
             });
            // this.props.getWorkshopServices();
 
@@ -112,7 +110,8 @@ class CarServices extends Component {
             this.props.getCarServices();
             this.setState({
                 isSaving:false,
-                selectedList:[]
+                isLoaded:false,
+                selectedServices:[]
             })
         }
     }
@@ -148,7 +147,7 @@ class CarServices extends Component {
             title={"Car Services"}
             navigation={this.props.navigation}
         >
-            {this.props.isLoaded ?
+            {this.state.isLoaded ?
                 (<FlatList
                     onRefresh={this.onPullToRefreshList}
                     refreshing={this.state.isRefreshing}

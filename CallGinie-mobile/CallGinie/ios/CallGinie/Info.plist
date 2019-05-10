@@ -78,7 +78,14 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UberClientID</key>
+	<string>Q_EJvyvpCZ577bYN_zQXdQfGCddA1kMc</string>
+	<key>UberDisplayName</key>
+	<string>Uber</string>
 	<key>LSApplicationQueriesSchemes</key>
-	<string>uber</string>
+	<array>
+		<string>uber</string>
+		<string>uberauth</string>
+	</array>
 </dict>
 </plist>

@@ -5,7 +5,9 @@ const INITIAL_STATE = {
    workshopLocation:null,
    appointmentID:-1,
    hasMechanicReached:false,
-   receipt:null
+   receipt:null,
+   isBookServiceInAdvance:false,
+   bookInAdvanceError:""
 };
 import   * as types from "../actions/types"
 
@@ -45,10 +47,22 @@ export default function BookServiceReducer(state = INITIAL_STATE, action) {
             ...state,
             receipt:action.payload.appointment
         }
-        case types.RESET_APPOINTMENT:{
+        case types.RESET_APPOINTMENT:
             return{
             ...INITIAL_STATE
             }
+        
+        case types.BOOK_SERVICE_IN_ADVANCE:
+            return{
+                ...state,
+                isBookServiceInAdvance:!state.isBookServiceInAdvance,
+                bookInAdvanceError:""
+        }
+        case types.BOOK_SERVICE_IN_ADVANCE_ERROR:
+            return{
+                ...state,
+                isBookServiceInAdvance:!state.isBookServiceInAdvance,
+                bookInAdvanceError:"error"
         }
         case types.LOGOUT:
             return INITIAL_STATE;

@@ -27,6 +27,30 @@ export function bookAService(bookServiceObj) {
             })
     }
 }
+
+export function bookAServiceInAdvance(bookServiceObj) {
+    return function (dispatch, getState) {
+        let userID = getState().AuthReducer.customer.U_id;
+   
+        let isDevMode = false;
+        let axiosParams = {
+            method: "POST",
+            url: "COwner/bookAnAppointmentinAdvance",
+            data: bookServiceObj
+        };
+        NetworkActions.makeHTTPRequest(axiosParams, isDevMode)
+            .then(function (response) {
+                DropDownHolder.getDropDown().alertWithType('success', 'Schedule Appointment', "Your appointment is successfully scheduled");
+
+                dispatch({ type: types.BOOK_SERVICE_IN_ADVANCE });
+            }).catch(function (error) {
+                dispatch({ type: types.BOOK_SERVICE_IN_ADVANCE_ERROR });
+                DropDownHolder.getDropDown().alertWithType('error', 'error', "Could not book you your appointment.");
+
+            })
+    }
+}
+
 export function setWorkshopDetailsForAppointment(workshopDetail) {
     return function (dispatch, getState) {
         let workshop = {
