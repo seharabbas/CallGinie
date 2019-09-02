@@ -1,7 +1,5 @@
 # CallGinie
-The purpose of Call Genie is to provide online mechanic services to car owners or drivers who face sudden car breakdown. The system is based on relational database supporting multiple users. The functionality will be designed in such a way that it will serve the intended users in an effective way. Following are some functionalities that the system will entertain.
-Admin Portal
-This module will manage car owner information. It will update the information of car owner and also this  module allow to add, Edit and Delete the Workshop owner in the system .This module will also able to maintain the list of services ensuring price transparency, that Workshop owner will provide. This module will also help the admin to view financial reports and app usage report.
+The purpose of Call Genie is to provide online mechanic services to car owners or drivers who face sudden car breakdown. The system is based on relational database supporting multiple users. The functionality will be designed in such a way that it will serve the intended users in an effective way.
 
 
 ## Setup
