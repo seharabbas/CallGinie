@@ -11,7 +11,7 @@
     "@react-native-community/netinfo": "^2.0.5",
     "axios": "^0.18.0",
     "install": "^0.12.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "react": "16.6.3",
     "react-native": "^0.59.5",
     "react-native-async-storage": "0.0.1",
